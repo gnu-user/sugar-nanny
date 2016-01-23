@@ -1,3 +1,5 @@
+CREATE EXTENSION "citext";
+
 CREATE TABLE users
 (
     user_id             SERIAL      NOT NULL PRIMARY KEY,
@@ -7,7 +9,7 @@ CREATE TABLE users
     weight              NUMERIC     DEFAULT NULL,
     sex                 CHAR(1)     DEFAULT NULL,
     dob                 DATE        DEFAULT NULL,
-    email               TEXT        NOT NULL UNIQUE,
+    email               CITEXT      NOT NULL UNIQUE,
     password            TEXT        NOT NULL,
     -- Diabetes specifics
     diabetes_type       INTEGER     DEFAULT NULL,
@@ -22,7 +24,7 @@ CREATE TABLE users
     grams_carb_per_unit NUMERIC     DEFAULT NULL
 );
 
-CREATE INDEX ON users(email);
+CREATE UNIQUE INDEX ON users(email);
 
 
 CREATE TABLE readings
