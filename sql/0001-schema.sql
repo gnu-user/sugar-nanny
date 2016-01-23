@@ -161,3 +161,21 @@ SELECT
     nutrition_score_fr_100g::NUMERIC AS nutrition_score_fr_100g,
     nutrition_score_uk_100g::NUMERIC AS nutrition_score_uk_100g
 FROM raw_data;
+
+-- Clean / Process the data
+DELETE FROM food_facts WHERE product_name IS NULL and generic_name IS NULL;
+UPDATE food_facts SET product_name = generic_name 
+WHERE product_name IS NULL AND generic_name IS NOT NULL;
+
+-- Cleanup product_name
+UPDATE food_facts SET product_name = trim(both from product_name);
+UPDATE food_facts SET product_name = lower(product_name);
+
+-- Remove food with missing data
+DELETE FROM food_facts WHERE energy_100g IS NULL
+AND carbohydrates_100g IS NULL;
+
+-- Remove french categories
+UPDATE food_facts SET categories_en = NULL WHERE categories_en LIKE 'fr:%';
+UPDATE food_facts SET categories_en = trim(both FROM categories_en);
+UPDATE food_facts SET categories_en = lower(categories_en);
