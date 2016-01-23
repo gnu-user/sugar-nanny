@@ -31,3 +31,7 @@
 .morris-hover.morris-default-style .morris-hover-point{
 	white-space:nowrap;margin:0.1em 0;
 }
+
+.am-top-header .navbar-collapse {
+	padding-right:0 !important;
+}
