@@ -35,3 +35,6 @@
 .am-top-header .navbar-collapse {
 	padding-right:0 !important;
 }
+span.icon{
+	margin:0;
+}
