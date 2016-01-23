@@ -79,7 +79,7 @@ var App = (function () {
 				hoverCallback: function(index, options, content) {
 				  var data = options.data[index];
 					$(".morris-hover").html('<div>Food item: ' + data.test + '</div>');
-				}
+				},
 				barColors: [color1],
 				barRatio: 0.4,
 				hideHover: 'auto'
