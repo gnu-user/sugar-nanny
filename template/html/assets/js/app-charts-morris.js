@@ -12,15 +12,10 @@ var App = (function () {
 		}
 	});
 	  var tax_data = [
-	       {"Time": "2013", "mmol/L": 400},
-	       {"Time": "2012", "mmol/L": 450},
-	       {"Time": "2011", "mmol/L": 350},
-	       {"Time": "2010", "mmol/L": 500},
-	       {"Time": "2009", "mmol/L": 250},
-	       {"Time": "2008", "mmol/L": 350},
-	       {"Time": "2007", "mmol/L": 180},
-	       {"Time": "2006", "mmol/L": 300},
-	       {"Time": "2005", "mmol/L": 200}
+	       {"Time": "2015", "mmol/L": 400},
+	       {"Time": "2010", "mmol/L": 200},
+	       {"Time": "2005", "mmol/L": 200},
+
 	  ];
 
 	  //Line Chart
@@ -34,13 +29,14 @@ var App = (function () {
 		    xkey: 'Time',
 		    ykeys: ['mmol/L'],
 		    labels: ['Blood Sugar'],
-		    lineColors: [color1]
+		    lineColors: [color1],
+		    hideHover: 'auto'
 		  });
 	  }
 
 	  //Bar chart
 	  function bar_chart(){
-			var color1 = tinycolor( App.color.alt3 ).lighten( 15 ).toString();
+			var color1 = tinycolor( App.color.alt3 ).lighten( 10 ).toString();
 
 	  	Morris.Bar({
 			  element: 'bar-chart',
@@ -54,14 +50,14 @@ var App = (function () {
 			  ],
 			  xkey: 'Time',
 			  ykeys: ['Carbohydrates'],
-			  labels: ['Carbohydrates','test'],
+			  labels: ['Carbohydrates','time'],
 			  barColors: [color1],
 			  barRatio: 0.4,
 			  hideHover: 'auto'
 			});
 	  }
 		function bar_chart_2(){
-			var color1 = tinycolor( App.color.alt3 ).lighten( 15 ).toString();
+			var color1 = tinycolor("#EC4444").lighten( 10 ).toString();
 
 			Morris.Bar({
 				element: 'bar-chart-2',
@@ -75,11 +71,7 @@ var App = (function () {
 				],
 				xkey: 'Time',
 				ykeys: ['Carbohydrates'],
-				labels: ['Carbohydrates'],
-				hoverCallback: function(index, options, content) {
-				  var data = options.data[index];
-					$(".morris-hover").html('<div>Food item: ' + data.test + '</div>');
-				},
+				labels: ['Carbohydrates', 'time'],
 				barColors: [color1],
 				barRatio: 0.4,
 				hideHover: 'auto'
@@ -140,7 +132,7 @@ var App = (function () {
 
 	  line_chart();
 	  bar_chart();
-		bar_chart_2();
+	  bar_chart_2();
 	  //donut_chart();
 	  //area_chart();
 	};
