@@ -14,7 +14,12 @@ CREATE TABLE users
     high_blood_pressure BOOLEAN     DEFAULT NULL,
     pregnant            BOOLEAN     DEFAULT NULL,
     insulin_tdd         INTEGER     DEFAULT NULL,
-    background_dose     INTEGER     DEFAULT NULL
+    background_dose     INTEGER     DEFAULT NULL,
+    pre_meal_target	NUMERIC     DEFAULT NULL,
+    post_meal_target	NUMERIC     DEFAULT NULL,
+    basal_corr_factor   NUMERIC     DEFAULT NULL,
+    bolus_corr_factor   NUMERIC     DEFAULT NULL,
+    grams_carb_per_unit NUMERIC     DEFAULT NULL
 );
 
 CREATE INDEX ON users(email);
