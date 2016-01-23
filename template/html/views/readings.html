@@ -1,4 +1,3 @@
-
 <div class="row">
   <div class="col-sm-6">
     <div class="panel panel-default">
@@ -8,13 +7,11 @@
       <div class="panel-body">
         <form role="form" class="form-horizontal">
           <div class="form-group">
-            <label for="bloodSugarLevel" class="col-sm-2 control-label">Blood Sugar</label>
+            <label for="bloodSugarLevel" class="col-sm-3 control-label">Blood Sugar</label>
             <div class="col-sm-3">
               <input id="bloodSugarLevel" class="form-control">
             </div>
-            <div class="col-sm-2">
-            </div>
-            <label for="bloodSugarLevelTime" class="col-sm-2 control-label">Last recorded</label>
+            <label for="bloodSugarLevelTime" class="col-sm-3 control-label">Time recorded</label>
             <div class="col-sm-3">
               <input id="bloodSugarLevelTime" class="form-control">
             </div>
@@ -22,7 +19,7 @@
           <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
               <div class="spacer text-right">
-                <button type="submit" class="btn btn-space btn-primary">Registrer</button>
+                <button type="submit" class="btn btn-space btn-primary">Submit</button>
               </div>
             </div>
           </div>
@@ -39,21 +36,20 @@
       <div class="panel-body">
         <form role="form" class="form-horizontal">
           <div class="form-group">
-            <label for="insulinLevel" class="col-sm-2 control-label">Insulin</label>
+            <label for="insulinLevel" class="col-sm-3 control-label">Insulin</label>
             <div class="col-sm-3">
-              <input id="insulinLevel" type="email" placeholder="Email" class="form-control">
+              <input id="insulinLevel" type="email" class="form-control">
             </div>
-            <div class="col-sm-2">
-            </div>
-            <label for="insulinLevelTime" class="col-sm-2 control-label">Last recorded</label>
+            <label for="insulinLevelTime" class="col-sm-3 control-label">Time recorded</label>
             <div class="col-sm-3">
-              <input id="insulinLevelTime" class="form-control">
-            </div>
+              <select id="insulinLevelTime" class="form-control">
+
+              </select>
           </div>
           <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
               <div class="spacer text-right">
-                <button type="submit" class="btn btn-space btn-primary">Registrer</button>
+                <button type="submit" class="btn btn-space btn-primary">Submit</button>
               </div>
             </div>
           </div>
@@ -62,3 +58,19 @@
     </div>
   </div>
 </div>
+<script>
+var date = Date.now()
+
+for(var i = 0; i < 10; i++){  
+
+  date2 = new  Date(date - 900000*i)
+  //date = date.getHours()
+  hours = date2.getUTCHours()
+  minutes = date2.getUTCMinutes()
+  if(minutes < 10){
+    minutes = "00"
+  }
+  $('#insulinLevelTime').append('<option>'+ hours + ':'+ minutes+'</option>'); 
+}
+
+</script> 
