@@ -1,0 +1,13 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+
+    "type": "object",
+
+    "properties":
+    {
+        "title":       { "type": "string" },
+        "description": { "type": "string" },
+        "category":    { "type": "string", "enum": ["profile", "cover", "listing"] }
+    },
+    "required": ["category"]
+}

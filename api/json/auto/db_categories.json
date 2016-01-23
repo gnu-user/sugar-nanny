@@ -1,0 +1,359 @@
+[
+  {
+    "category": "Gear", 
+    "path": [
+      "Gear"
+    ]
+  }, 
+  {
+    "category": "Microphone", 
+    "path": [
+      "Gear", 
+      "Microphone"
+    ]
+  }, 
+  {
+    "category": "Vintage", 
+    "path": [
+      "Gear", 
+      "Microphone", 
+      "Vintage"
+    ]
+  }, 
+  {
+    "category": "Compressor", 
+    "path": [
+      "Gear", 
+      "Microphone", 
+      "Compressor"
+    ]
+  }, 
+  {
+    "category": "Live", 
+    "path": [
+      "Gear", 
+      "Microphone", 
+      "Live"
+    ]
+  }, 
+  {
+    "category": "Accessory", 
+    "path": [
+      "Gear", 
+      "Microphone", 
+      "Accessory"
+    ]
+  }, 
+  {
+    "category": "Stand", 
+    "path": [
+      "Gear", 
+      "Microphone", 
+      "Accessory", 
+      "Stand"
+    ]
+  }, 
+  {
+    "category": "XLR", 
+    "path": [
+      "Gear", 
+      "Microphone", 
+      "Accessory", 
+      "XLR"
+    ]
+  }, 
+  {
+    "category": "Wireless", 
+    "path": [
+      "Gear", 
+      "Microphone", 
+      "Accessory", 
+      "Wireless"
+    ]
+  }, 
+  {
+    "category": "Lighting", 
+    "path": [
+      "Gear", 
+      "Lighting"
+    ]
+  }, 
+  {
+    "category": "Drums/Percussion", 
+    "path": [
+      "Gear", 
+      "Drums/Percussion"
+    ]
+  }, 
+  {
+    "category": "Drum Kit", 
+    "path": [
+      "Gear", 
+      "Drums/Percussion", 
+      "Drum Kit"
+    ]
+  }, 
+  {
+    "category": "Strings", 
+    "path": [
+      "Gear", 
+      "Strings"
+    ]
+  }, 
+  {
+    "category": "Guitar", 
+    "path": [
+      "Gear", 
+      "Strings", 
+      "Guitar"
+    ]
+  }, 
+  {
+    "category": "Acoustic", 
+    "path": [
+      "Gear", 
+      "Strings", 
+      "Guitar", 
+      "Acoustic"
+    ]
+  }, 
+  {
+    "category": "Electric", 
+    "path": [
+      "Gear", 
+      "Strings", 
+      "Guitar", 
+      "Electric"
+    ]
+  }, 
+  {
+    "category": "Bass", 
+    "path": [
+      "Gear", 
+      "Strings", 
+      "Bass"
+    ]
+  }, 
+  {
+    "category": "Acoustic", 
+    "path": [
+      "Gear", 
+      "Strings", 
+      "Bass", 
+      "Acoustic"
+    ]
+  }, 
+  {
+    "category": "Electric", 
+    "path": [
+      "Gear", 
+      "Strings", 
+      "Bass", 
+      "Electric"
+    ]
+  }, 
+  {
+    "category": "Stand-up Bass", 
+    "path": [
+      "Gear", 
+      "Strings", 
+      "Bass", 
+      "Stand-up Bass"
+    ]
+  }, 
+  {
+    "category": "Cello", 
+    "path": [
+      "Gear", 
+      "Strings", 
+      "Cello"
+    ]
+  }, 
+  {
+    "category": "Classic", 
+    "path": [
+      "Gear", 
+      "Strings", 
+      "Cello", 
+      "Classic"
+    ]
+  }, 
+  {
+    "category": "Electric", 
+    "path": [
+      "Gear", 
+      "Strings", 
+      "Cello", 
+      "Electric"
+    ]
+  }, 
+  {
+    "category": "Violin", 
+    "path": [
+      "Gear", 
+      "Strings", 
+      "Violin"
+    ]
+  }, 
+  {
+    "category": "Classic", 
+    "path": [
+      "Gear", 
+      "Strings", 
+      "Violin", 
+      "Classic"
+    ]
+  }, 
+  {
+    "category": "Electric", 
+    "path": [
+      "Gear", 
+      "Strings", 
+      "Violin", 
+      "Electric"
+    ]
+  }, 
+  {
+    "category": "Harp", 
+    "path": [
+      "Gear", 
+      "Strings", 
+      "Harp"
+    ]
+  }, 
+  {
+    "category": "Synths", 
+    "path": [
+      "Gear", 
+      "Synths"
+    ]
+  }, 
+  {
+    "category": "Horns", 
+    "path": [
+      "Gear", 
+      "Horns"
+    ]
+  }, 
+  {
+    "category": "Sax", 
+    "path": [
+      "Gear", 
+      "Horns", 
+      "Sax"
+    ]
+  }, 
+  {
+    "category": "Trumpet", 
+    "path": [
+      "Gear", 
+      "Horns", 
+      "Trumpet"
+    ]
+  }, 
+  {
+    "category": "Keys", 
+    "path": [
+      "Gear", 
+      "Keys"
+    ]
+  }, 
+  {
+    "category": "Classic", 
+    "path": [
+      "Gear", 
+      "Keys", 
+      "Classic"
+    ]
+  }, 
+  {
+    "category": "Electric", 
+    "path": [
+      "Gear", 
+      "Keys", 
+      "Electric"
+    ]
+  }, 
+  {
+    "category": "Talent", 
+    "path": [
+      "Talent"
+    ]
+  }, 
+  {
+    "category": "Producer", 
+    "path": [
+      "Talent", 
+      "Producer"
+    ]
+  }, 
+  {
+    "category": "Mixing Engineer", 
+    "path": [
+      "Talent", 
+      "Mixing Engineer"
+    ]
+  }, 
+  {
+    "category": "Studio", 
+    "path": [
+      "Talent", 
+      "Mixing Engineer", 
+      "Studio"
+    ]
+  }, 
+  {
+    "category": "Live", 
+    "path": [
+      "Talent", 
+      "Mixing Engineer", 
+      "Live"
+    ]
+  }, 
+  {
+    "category": "Mastering", 
+    "path": [
+      "Talent", 
+      "Mixing Engineer", 
+      "Mastering"
+    ]
+  }, 
+  {
+    "category": "Session Player", 
+    "path": [
+      "Talent", 
+      "Session Player"
+    ]
+  }, 
+  {
+    "category": "Strings", 
+    "path": [
+      "Talent", 
+      "Session Player", 
+      "Strings"
+    ]
+  }, 
+  {
+    "category": "Drums", 
+    "path": [
+      "Talent", 
+      "Session Player", 
+      "Drums"
+    ]
+  }, 
+  {
+    "category": "Horns", 
+    "path": [
+      "Talent", 
+      "Session Player", 
+      "Horns"
+    ]
+  }, 
+  {
+    "category": "Vocalist", 
+    "path": [
+      "Talent", 
+      "Vocalist"
+    ]
+  }
+]

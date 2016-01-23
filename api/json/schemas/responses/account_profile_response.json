@@ -1,0 +1,227 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+
+    "type": "object",
+
+    "properties":
+    {
+        "success":   { "type": "boolean" },
+        "code":      { "type": "integer" },
+        "status":    { "type": "string" },
+        "data":
+        {
+            "type": "object",
+            "properties":
+            {
+                "account_uuid":
+                {
+                    "type": "string",
+                    "format": "uuid",
+                    "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+                },
+                "account_type":    { "type": "string", "enum": ["individual", "company"] },
+                "username":        { "type": "string" },
+                "first_name":      { "type": "string" },
+                "last_name":       { "type": "string" },
+                "specialties":     { "type": "string" },
+                "bio":             { "type": ["string", "null"] },
+                "audio_embed_message":  { "type": ["string", "null"] },
+                "video_embed_message":  { "type": ["string", "null"] },
+                "rating":          { "type": ["number", "null"], "minimum": 0.0, "maximum": 5.0 },
+                "listing_ratings":
+                {
+                    "type": "object",
+                    "properties":
+                    {
+                        "recording_studio": { "type": ["number", "null"], "minimum": 0.0, "maximum": 5.0 },
+                        "rehearsal_space":  { "type": ["number", "null"], "minimum": 0.0, "maximum": 5.0 },
+                        "gear_rental":      { "type": ["number", "null"], "minimum": 0.0, "maximum": 5.0 },
+                        "talent_for_hire":  { "type": ["number", "null"], "minimum": 0.0, "maximum": 5.0 }
+                    }
+                },
+                "website": { "type": ["string", "null"] },
+                "location":
+                {
+                    "type": "object",
+                    "properties":
+                    {
+                        "address":
+                        {
+                            "type": "object",
+                            "properties":
+                            {
+                                "company": { "type": ["string", "null"] },
+                                "city":    { "type": "string" },
+                                "country": { "type": "string" },
+                                "state":   { "type": "string" }
+                            },
+                            "required": ["city", "country", "state"]
+                        }
+                    },
+                    "required": ["address"]
+                },
+                "verified":          { "type": "array", "items": { "type": "string" }},
+                "social_media":
+                {
+                    "type": "object",
+                    "properties":
+                    {
+                        "facebook":     { "type": "string" },
+                        "instagram":    { "type": "string" },
+                        "twitter":      { "type": "string" },
+                        "soundcloud":   { "type": "string" },
+                        "mixcloud":     { "type": "string" },
+                        "youtube":      { "type": "string" },
+                        "vimeo":        { "type": "string" }
+                    }
+                },
+                "embeds":
+                {
+                    "type": "object",
+                    "properties":
+                    {
+                        "soundcloud":
+                        {
+                            "type": "array",
+                            "items":
+                            [
+                                {
+                                    "type": "object",
+                                    "properties":
+                                    {
+                                        "url": { "type": "string" },
+                                        "response": { "type": "object" },
+                                        "oembed_endpoint": { "type": "string" },
+                                        "time": { "type": "number" }
+                                    }
+                                }
+                            ]
+                        },
+                        "mixcloud":
+                        {
+                            "type": "array",
+                            "items":
+                            [
+                                {
+                                    "type": "object",
+                                    "properties":
+                                    {
+                                        "url": { "type": "string" },
+                                        "response": { "type": "object" },
+                                        "oembed_endpoint": { "type": "string" },
+                                        "time": { "type": "number" }
+                                    }
+                                }
+                            ]
+                        },
+                        "youtube":
+                        {
+                            "type": "array",
+                            "items":
+                            [
+                                {
+                                    "type": "object",
+                                    "properties":
+                                    {
+                                        "url": { "type": "string" },
+                                        "response": { "type": "object" },
+                                        "oembed_endpoint": { "type": "string" },
+                                        "time": { "type": "number" }
+                                    }
+                                }
+                            ]
+                        },
+                        "vimeo":
+                        {
+                            "type": "array",
+                            "items":
+                            [
+                                {
+                                    "type": "object",
+                                    "properties":
+                                    {
+                                        "url": { "type": "string" },
+                                        "response": { "type": "object" },
+                                        "oembed_endpoint": { "type": "string" },
+                                        "time": { "type": "number" }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                },
+                "photos":
+                {
+                    "type": "object",
+                    "properties":
+                    {
+                        "cover":
+                        {
+                            "type": "array",
+                            "items":
+                            [
+                                {
+                                    "type": "object",
+                                    "properties":
+                                    {
+                                        "url": { "type": "string" },
+                                        "uuid":
+                                        {
+                                            "type": "string",
+                                            "format": "uuid",
+                                            "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+                                        }
+                                    }
+                                }
+                            ]
+                        },
+                        "profile":
+                        {
+                            "type": "array",
+                            "items":
+                            [
+                                {
+                                    "type": "object",
+                                    "properties":
+                                    {
+                                        "url": { "type": "string" },
+                                        "uuid":
+                                        {
+                                            "type": "string",
+                                            "format": "uuid",
+                                            "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+                                        }
+                                    }
+                                }
+                            ]
+                        },
+                        "listing":
+                        {
+                            "type": "array",
+                            "items":
+                            [
+                                {
+                                    "type": "object",
+                                    "properties":
+                                    {
+                                        "url": { "type": "string" },
+                                        "uuid":
+                                        {
+                                            "type": "string",
+                                            "format": "uuid",
+                                            "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+            },
+            "required": ["account_uuid", "account_type", "username", "first_name", "last_name",
+                 "specialties", "bio", "website", "location", "verified"]
+        },
+        "errors": { "type": "array" }
+    },
+    "required": ["success", "code", "status"]
+}

@@ -1,0 +1,88 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+
+    "type": "object",
+
+    "properties":
+    {
+        "success": { "type": "boolean" },
+        "code":    { "type": "integer" },
+        "status":  { "type": "string" },
+        "data":
+        {
+            "type": "object",
+            "properties":
+            {
+                "images":
+                {
+                    "type": "object",
+                    "properties":
+                    {
+                        "cover":
+                        {
+                            "type": "array",
+                            "items":
+                            [
+                                {
+                                    "type": "object",
+                                    "properties":
+                                    {
+                                        "url": { "type": "string" },
+                                        "uuid":
+                                        {
+                                            "type": "string",
+                                            "format": "uuid",
+                                            "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+                                        }
+                                    }
+                                }
+                            ]
+                        },
+                        "profile":
+                        {
+                            "type": "array",
+                            "items":
+                            [
+                                {
+                                    "type": "object",
+                                    "properties":
+                                    {
+                                        "url": { "type": "string" },
+                                        "uuid":
+                                        {
+                                            "type": "string",
+                                            "format": "uuid",
+                                            "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+                                        }
+                                    }
+                                }
+                            ]
+                        },
+                        "listing":
+                        {
+                            "type": "array",
+                            "items":
+                            [
+                                {
+                                    "type": "object",
+                                    "properties":
+                                    {
+                                        "url": { "type": "string" },
+                                        "uuid":
+                                        {
+                                            "type": "string",
+                                            "format": "uuid",
+                                            "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "errors":  { "type": "array" }
+    },
+    "required": ["success", "code", "status"]
+}
