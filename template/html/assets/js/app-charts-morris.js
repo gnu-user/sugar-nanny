@@ -66,16 +66,20 @@ var App = (function () {
 			Morris.Bar({
 				element: 'bar-chart-2',
 				data: [
-					{Time: '09:00', Carbohydrates: 136, test:1},
-					{Time: '12:00', Carbohydrates: 137, test:1},
+					{Time: '09:00', Carbohydrates: 136, test:"Pizza"},
+					{Time: '12:00', Carbohydrates: 137, test:"Chocolate"},
 					{Time: '3:00', Carbohydrates: 275, test:2},
 					{Time: '6:00', Carbohydrates: 380, test:1},
 					{Time: '9:00', Carbohydrates: 655, test:3},
 					{Time: '12:00', Carbohydrates: 1571, test:1}
 				],
 				xkey: 'Time',
-				ykeys: ['Carbohydrates', 'test'],
-				labels: ['Carbohydrates','test'],
+				ykeys: ['Carbohydrates'],
+				labels: ['Carbohydrates'],
+				hoverCallback: function(index, options, content) {
+				  var data = options.data[index];
+					$(".morris-hover").html('<div>Food item: ' + data.test + '</div>');
+				}
 				barColors: [color1],
 				barRatio: 0.4,
 				hideHover: 'auto'
