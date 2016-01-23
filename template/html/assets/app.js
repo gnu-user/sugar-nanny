@@ -6,6 +6,10 @@
       .when('/', {
         templateUrl: "views/dashboard.html",
         controller: "DashCtrl"
+      })
+      .when('/meals', {
+        templateUrl: "views/meals.html",
+        controller: "DashCtrl"
       });
 
     $locationProvider.html5Mode(false);
