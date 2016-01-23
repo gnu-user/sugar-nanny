@@ -66,8 +66,8 @@ var App = (function () {
 			Morris.Bar({
 				element: 'bar-chart-2',
 				data: [
-					{Time: '09:00', Carbohydrates: 136, test:"Pizza"},
-					{Time: '12:00', Carbohydrates: 137, test:"Chocolate"},
+					{Time: '09:00', Carbohydrates: 136, test:1},
+					{Time: '12:00', Carbohydrates: 137, test:2},
 					{Time: '3:00', Carbohydrates: 275, test:2},
 					{Time: '6:00', Carbohydrates: 380, test:1},
 					{Time: '9:00', Carbohydrates: 655, test:3},
