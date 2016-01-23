@@ -15,12 +15,19 @@
     $locationProvider.html5Mode(false);
   });
 
-  app.controller('GlobalCtrl', function($rootScope, $scope, $routeParams, $http){
+  app.controller('GlobalCtrl', function($rootScope, $scope, $location, $routeParams, $http){
+    $rootScope.$on( "$routeChangeStart", function(event, next, current) {
+      var page = $location.path().substr(1)
+      if(page != ""){
+        $scope.title = page.charAt(0).toUpperCase() + page.slice(1) 
+      } else {
+        $scope.title = "Dashboard"
+      }
+      
+    });
 
-    $scope.page = "Dashboard"
-    $scope.title = "whatever"
   });
-  
+
   app.controller('DashCtrl', function($rootScope, $scope, $routeParams, $http){
 
     $scope.page = "Dashboard"

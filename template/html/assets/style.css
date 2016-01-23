@@ -2,3 +2,9 @@
 	width:40px;
 	margin:10px 16px;
 }
+.am-left-sidebar .am-logo {
+	display:none !important;
+}
+.am-top-header .navbar-header .navbar-brand {
+	background-image: url("") !important;
+}
