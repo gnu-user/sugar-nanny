@@ -20,19 +20,19 @@ def account_login():
     req = get_request_data()
     with get_db_cursor(commit=True) as cur:
         cur.execute('''
-                    SELECT response
-                    FROM account_login(%(login)s)
+                    SELECT user_id
+                    FROM users
+                    WHERE email = %(email)s
+                    AND password = %(password)s
                     ''', req)
         res = cur.fetchone()
         if res is None:
-            raise InvalidUsage('Email or username not found.',
-                               'email_or_username_not_found')
+            raise InvalidUsage('Email not found or password invalid.',
+                               'email_or_password_incalid')
         else:
-            valid = res['response']
-        if not valid:
-            raise InvalidUsage('Invalid password.', 'invalid_password')
+            user_id = res['user_id']
 
-    return success_response()
+    return success_response({'data': {'user_id': user_id}})
 
 
 @account.route('/email-available/<email>', methods=['GET'])
@@ -74,7 +74,6 @@ def account_signup():
                     WHERE account_id = %(account_id)s
                     ''', res)
         account = cur.fetchone()['account_info']
-        request_registration_email(app.config['QUEUE_PREFIX'], account)
         request_phone_confirm(app.config['QUEUE_PREFIX'], account)
 
         errors = []

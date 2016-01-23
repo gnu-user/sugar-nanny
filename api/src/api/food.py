@@ -27,10 +27,28 @@ def food_search(query):
     return success_response({'data': {'results': res}})
 
 
-@food.route('/record', methods=['POST'])
+@food.route('/retrieve/<food_id>', methods=['GET'])
+@validate_response()
+def food_search(food_id):
+    with get_db_cursor(commit=True) as cur:
+        cur.execute('''
+                    SELECT json_agg(summarize_listing(listings))::jsonb AS response
+                    FROM listings
+                    JOIN favorite_listings
+                    USING (listing_id)
+                    WHERE favorite_listings.account_id =
+                      (SELECT account_id
+                       FROM accounts
+                       WHERE account_uuid = %s)
+                    ''', (my_account_uuid,))
+        res = cur.fetchone()['response']
+    return success_response({'data': {'results': res}})
+
+
+@food.route('/record/<user_id>/<food_id>', methods=['POST'])
 @validate_request()
 @validate_response()
-def food_search(query):
+def food_search(user_id, food_id):
     with get_db_cursor(commit=True) as cur:
         cur.execute('''
                     SELECT json_agg(summarize_listing(listings))::jsonb AS response
