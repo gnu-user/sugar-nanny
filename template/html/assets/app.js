@@ -15,13 +15,17 @@
     $locationProvider.html5Mode(false);
   });
 
+  app.controller('GlobalCtrl', function($rootScope, $scope, $routeParams, $http){
+
+    $scope.page = "Dashboard"
+    $scope.title = "whatever"
+  });
+  
   app.controller('DashCtrl', function($rootScope, $scope, $routeParams, $http){
 
-
-     
+    $scope.page = "Dashboard"
     $scope.data = {
-      text: "hello",
-      page: "Dashboard"
+      text: "hello"
     }
   });
 // root controller for home page
