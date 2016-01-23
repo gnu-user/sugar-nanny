@@ -41,6 +41,11 @@
     $scope.data = {
       text: "hello"
     }
+
+    $scope.$watch('search', function() {
+
+
+    });
   });
 // root controller for home page
 })();
