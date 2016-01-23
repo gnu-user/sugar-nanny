@@ -17,9 +17,11 @@
 
   app.controller('DashCtrl', function($rootScope, $scope, $routeParams, $http){
 
+
      
     $scope.data = {
-      text: "hello"
+      text: "hello",
+      page: "Dashboard"
     }
   });
 // root controller for home page
