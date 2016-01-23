@@ -7,8 +7,16 @@
         templateUrl: "views/dashboard.html",
         controller: "DashCtrl"
       })
+      .when('/readings', {
+        templateUrl: "views/readings.html",
+        controller: "DashCtrl"
+      })
       .when('/meals', {
         templateUrl: "views/meals.html",
+        controller: "DashCtrl"
+      })
+      .when('/history', {
+        templateUrl: "views/history.html",
         controller: "DashCtrl"
       });
 
