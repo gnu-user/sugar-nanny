@@ -57,7 +57,7 @@ var App = (function () {
 			});
 	  }
 		function bar_chart_2(){
-			var color1 = tinycolor("#EC4444").lighten( 10 ).toString();
+			var color1 = tinycolor("#C1EF65").lighten( 10 ).toString();
 
 			Morris.Bar({
 				element: 'bar-chart-2',
