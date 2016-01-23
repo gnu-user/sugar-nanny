@@ -1,0 +1,25 @@
+# This file describes the network interfaces available on your system
+# and how to activate them. For more information, see interfaces(5).
+
+# The loopback network interface
+auto lo
+iface lo inet loopback
+
+auto eth0
+iface eth0 inet static
+	address 192.99.47.133
+	netmask 255.255.255.0
+	network 192.99.47.0
+	broadcast 192.99.47.255
+	gateway 192.99.47.254
+	dns-nameservers 8.8.8.8 8.8.4.4
+
+iface eth0 inet6 static
+	address 2607:5300:60:5285::
+	netmask 64
+	post-up /sbin/ip -f inet6 route add 2607:5300:60:52ff:ff:ff:ff:ff dev eth0
+	post-up /sbin/ip -f inet6 route add default via 2607:5300:60:52ff:ff:ff:ff:ff
+	pre-down /sbin/ip -f inet6 route del default via 2607:5300:60:52ff:ff:ff:ff:ff
+	pre-down /sbin/ip -f inet6 route del 2607:5300:60:52ff:ff:ff:ff:ff dev eth0
+	nameserver 2001:4860:4860::8888
+	nameserver 2001:4860:4860::8844

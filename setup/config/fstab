@@ -1,0 +1,2 @@
+LABEL=DOROOT       /               ext4    noatime,defaults,errors=remount-ro 0       1
+none		/dev/shm	tmpfs	noatime,defaults	0 0
