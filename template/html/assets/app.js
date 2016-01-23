@@ -19,13 +19,12 @@
     $rootScope.$on( "$routeChangeStart", function(event, next, current) {
       var page = $location.path().substr(1)
       if(page != ""){
-        $scope.title = page.charAt(0).toUpperCase() + page.slice(1) 
+        $scope.title = page.charAt(0).toUpperCase() + page.slice(1)
       } else {
         $scope.title = "Dashboard"
       }
-      
-    });
 
+    });
   });
 
   app.controller('DashCtrl', function($rootScope, $scope, $routeParams, $http){
