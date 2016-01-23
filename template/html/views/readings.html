@@ -13,7 +13,9 @@
             </div>
             <label for="bloodSugarLevelTime" class="col-sm-3 control-label">Time recorded</label>
             <div class="col-sm-3">
-              <input id="bloodSugarLevelTime" class="form-control">
+              <select id="bloodSugarLevelTime" class="form-control">
+
+              </select>
             </div>
           </div>
           <div class="form-group">
@@ -71,6 +73,7 @@ for(var i = 0; i < 10; i++){
     minutes = "00"
   }
   $('#insulinLevelTime').append('<option>'+ hours + ':'+ minutes+'</option>'); 
+  $('#bloodSugarLevelTime').append('<option>'+ hours + ':'+ minutes+'</option>'); 
 }
 
 </script> 
