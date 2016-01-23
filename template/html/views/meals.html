@@ -16,7 +16,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr class="odd gradeX">
+<!--                     <tr class="odd gradeX">
                       <td>Test</td>
                       <td></td>
                     </tr>
@@ -24,7 +24,12 @@
                       <td>Trident</td>
                       <td></td>
 
-                    </tr>
+                    </tr> -->
+
+	                    <tr ng-repeat="rows in searchResults">
+	                    <td>{{ rows.id }}</td>
+	                    <td>{{ rows.name }}</td>
+	                    </tr>
                   </tbody>
                 </table>
               </div>
