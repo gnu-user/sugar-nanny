@@ -1,3 +1,48 @@
 <div>
 insert graphs and dashboard stuff here <h1>{{ data.text }}</h1>
+
+<div class="main-content">
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <span class="title">Blood Sugar</span>
+        </div>
+        <div class="panel-body">
+          <div id="line-chart" style="height: 250px;"></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <span class="title">Carbohydrates Intake</span>
+        </div>
+        <div class="panel-body">
+          <div id="bar-chart" style="height: 250px;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <span class="title">Insulin Intake</span>
+        </div>
+        <div class="panel-body">
+          <div id="bar-chart-2" style="height: 250px;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    //initialize the javascript
+    App.init();
+    App.chartsMorris();
+  });
+</script>

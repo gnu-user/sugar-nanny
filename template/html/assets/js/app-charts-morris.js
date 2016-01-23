@@ -4,16 +4,23 @@ var App = (function () {
 	App.chartsMorris = function( ){
 
 		// data stolen from http://howmanyleft.co.uk/vehicle/jaguar_'e'_type
+
+		$.ajax({
+		url: "demo_test.txt",
+		success: function(result){
+			$("#div1").html(result);
+		}
+	});
 	  var tax_data = [
-	       {"period": "2013", "licensed": 400, "sorned": 550},
-	       {"period": "2012", "licensed": 450, "sorned": 400},
-	       {"period": "2011", "licensed": 350, "sorned": 550},
-	       {"period": "2010", "licensed": 500, "sorned": 700},
-	       {"period": "2009", "licensed": 250, "sorned": 380},
-	       {"period": "2008", "licensed": 350, "sorned": 240},
-	       {"period": "2007", "licensed": 180, "sorned": 300},
-	       {"period": "2006", "licensed": 300, "sorned": 250},
-	       {"period": "2005", "licensed": 200, "sorned": 150}
+	       {"Time": "2013", "mmol/L": 400},
+	       {"Time": "2012", "mmol/L": 450},
+	       {"Time": "2011", "mmol/L": 350},
+	       {"Time": "2010", "mmol/L": 500},
+	       {"Time": "2009", "mmol/L": 250},
+	       {"Time": "2008", "mmol/L": 350},
+	       {"Time": "2007", "mmol/L": 180},
+	       {"Time": "2006", "mmol/L": 300},
+	       {"Time": "2005", "mmol/L": 200}
 	  ];
 
 	  //Line Chart
@@ -24,37 +31,56 @@ var App = (function () {
 	  	new Morris.Line({
 		    element: 'line-chart',
 		    data: tax_data,
-		    xkey: 'period',
-		    ykeys: ['licensed', 'sorned'],
-		    labels: ['Licensed', 'Off the road'],
-		    lineColors: [color1, color2]
+		    xkey: 'Time',
+		    ykeys: ['mmol/L'],
+		    labels: ['Blood Sugar'],
+		    lineColors: [color1]
 		  });
 	  }
 
 	  //Bar chart
 	  function bar_chart(){
 			var color1 = tinycolor( App.color.alt3 ).lighten( 15 ).toString();
-	  	var color2 = tinycolor( App.color.alt3 ).brighten( 3 ).toString();
 
 	  	Morris.Bar({
 			  element: 'bar-chart',
 			  data: [
-			    {device: 'iPhone', geekbench: 136, macbench: 180},
-			    {device: 'iPhone 3G', geekbench: 137, macbench: 200},
-			    {device: 'iPhone 3GS', geekbench: 275, macbench: 350},
-			    {device: 'iPhone 4', geekbench: 380, macbench: 500},
-			    {device: 'iPhone 4S', geekbench: 655, macbench: 900},
-			    {device: 'iPhone 5', geekbench: 1571, macbench: 1700}
+			    {Time: '09:00', Carbohydrates: 136, test:1},
+			    {Time: '12:00', Carbohydrates: 137, test:1},
+			    {Time: '3:00', Carbohydrates: 275, test:2},
+			    {Time: '6:00', Carbohydrates: 380, test:1},
+			    {Time: '9:00', Carbohydrates: 655, test:3},
+			    {Time: '12:00', Carbohydrates: 1571, test:1}
 			  ],
-			  xkey: 'device',
-			  ykeys: ['geekbench','macbench'],
-			  labels: ['Geekbench','Macbench'],
-			  barColors: [color1, color2],
+			  xkey: 'Time',
+			  ykeys: ['Carbohydrates'],
+			  labels: ['Carbohydrates','test'],
+			  barColors: [color1],
 			  barRatio: 0.4,
-			  xLabelAngle: 35,
 			  hideHover: 'auto'
 			});
 	  }
+		function bar_chart_2(){
+			var color1 = tinycolor( App.color.alt3 ).lighten( 15 ).toString();
+
+			Morris.Bar({
+				element: 'bar-chart-2',
+				data: [
+					{Time: '09:00', Carbohydrates: 136, test:1},
+					{Time: '12:00', Carbohydrates: 137, test:1},
+					{Time: '3:00', Carbohydrates: 275, test:2},
+					{Time: '6:00', Carbohydrates: 380, test:1},
+					{Time: '9:00', Carbohydrates: 655, test:3},
+					{Time: '12:00', Carbohydrates: 1571, test:1}
+				],
+				xkey: 'Time',
+				ykeys: ['Carbohydrates', 'test'],
+				labels: ['Carbohydrates','test'],
+				barColors: [color1],
+				barRatio: 0.4,
+				hideHover: 'auto'
+			});
+		}
 
 	  //Donut Chart
 	  function donut_chart(){
@@ -110,8 +136,9 @@ var App = (function () {
 
 	  line_chart();
 	  bar_chart();
-	  donut_chart();
-	  area_chart();
+		bar_chart_2();
+	  //donut_chart();
+	  //area_chart();
 	};
 
 	return App;
