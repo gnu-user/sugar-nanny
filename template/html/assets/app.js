@@ -58,7 +58,7 @@
 
     $http(
       {method: 'GET',
-       url: 'http://api.sugarnanny.tech/stats/blood_sugar/1'}
+       url: 'http://api.sugarnanny.tech/history/blood_sugar/1'}
      )
           .success(function(data, status, headers, config) {
               $scope.sugarData = data.data;
@@ -71,6 +71,7 @@
           });
 
     $http({method: 'GET', url: 'http://api.sugarnanny.tech/stats/insulin/1'})
+
           .success(function(data, status, headers, config) {
               $scope.insulinIntake = data.data
           }).
@@ -81,6 +82,7 @@
     $http({method: 'GET', url: 'http://api.sugarnanny.tech/stats/meals/1'})
           .success(function(data, status, headers, config) {
               $scope.mealsHistory = data.data
+
           }).
             error(function(data, status, headers, config) {
             console.log('page not found:', data);

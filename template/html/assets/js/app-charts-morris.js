@@ -3,34 +3,36 @@ var App = (function () {
 
 	App.chartsMorris = function(){
 
-		$.ajax({
-		url: "demo_test.txt",
-		success: function(result){
-			$("#div1").html(result);
-		}
-		});
-
-		var tax_data = [
-	       {"Time": "2016-02-24 15:00", "mmol/L": 1.15},
-	       {"Time": "2016-02-24 15:20", "mmol/L": 5},
-	       {"Time": "2016-02-24 15:30", "mmol/L": 0.8}
-	  	];
 
 	  //Line Chart
 	  function line_chart(){
-	  	var color1 = App.color.primary;
-	  	var color2 = tinycolor( App.color.primary ).lighten( 15 ).toString();
 
+	  	var tax_data = []
+
+		$.ajax({
+		url: "http://api.sugarnanny.tech/stats/blood_sugar/1",
+		success: function(result){
+			
+			tax_data = result.data
+			console.log(result.data)
+
+	  	var color1 = App.color.primary; 
+
+	  	console.log("data:")
+	  	console.log(tax_data)
 	  	new Morris.Line({
 		    element: 'line-chart',
 		    data: tax_data,
-		    xkey: 'Time',
-		    ykeys: ['mmol/L'],
+		    xkey: 'timestamp',
+		    ykeys: ['reading'],
 		    ymax: 8,
 		    labels: ['Blood Sugar'],
 		    lineColors: [color1],
 		    hideHover: 'auto'
 		  });
+		}
+		});
+
 	  }
 
 	  //Bar chart
