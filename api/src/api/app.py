@@ -7,8 +7,6 @@ import psycopg2
 import psycopg2.extras
 import traceback
 from psycopg2.pool import ThreadedConnectionPool
-import pika
-import pika_pool
 from exceptions import Exception
 from error import AuthError, InvalidUsage
 from utils import error_response, LOGGER
@@ -24,16 +22,6 @@ pool = ThreadedConnectionPool(1, 20,
                               password=url.password,
                               host=url.hostname,
                               port=url.port)
-
-pika_pool = pika_pool.QueuedPool(
-    create=lambda: pika.BlockingConnection(
-        parameters=pika.URLParameters('amqp://localhost')),
-    max_size=10,
-    max_overflow=10,
-    timeout=10,
-    recycle=3600,
-    stale=45,
-)
 
 
 @app.errorhandler(Exception)
