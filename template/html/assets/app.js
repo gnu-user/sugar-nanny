@@ -45,6 +45,47 @@
 
     $scope.page = "Dashboard"
 
+      ///////////////////
+      /*    History    */
+      /*     Page      */
+      //////////////////
+
+      //Insulin Intake
+      $http(
+        {method: 'GET',
+        url: 'http://jsonplaceholder.typicode.com/users'}
+      ).
+        success(function(data, status, headers, config) {
+          $scope.insulinIntake = data
+      }).
+        error(function(data, status, headers, config) {
+        console.log('page not found:', data);
+      });
+
+    //Blood Sugar Level
+      $http(
+        {method: 'GET',
+         url: 'http://jsonplaceholder.typicode.com/users'}
+       ).
+        success(function(data, status, headers, config) {
+          $scope.bloodSugarLevel = data
+      }).
+        error(function(data, status, headers, config) {
+        console.log('page not found:', data);
+      });
+
+    //Meals History
+      $http(
+        {method: 'GET',
+         url: 'http://jsonplaceholder.typicode.com/users'}
+       ).
+        success(function(data, status, headers, config) {
+          $scope.mealsHistory = data
+      }).
+        error(function(data, status, headers, config) {
+        console.log('page not found:', data);
+      });
+
     $scope.$watch('search', function() {
 
       if($scope.search.length > 3){
@@ -54,12 +95,9 @@
           $scope.searchResults = data
       }).
         error(function(data, status, headers, config) {
-        // called asynchronously if an error occurs
-        // or server returns response with an error status.
         console.log('page not found:', data);
       });
     }
-
 
     });
 
@@ -73,8 +111,6 @@
           $scope.foodInformation = data;
       }).
         error(function(data, status, headers, config) {
-        // called asynchronously if an error occurs
-        // or server returns response with an error status.
         console.log('page not found:', data);
       });
     };
