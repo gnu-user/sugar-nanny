@@ -31,7 +31,7 @@ def account_login():
         else:
             account_id = res['account_id']
 
-    return success_response({'data': {'account_id': account_id}})
+        return success_response({'data': {'account_id': account_id}})
 
 
 @account.route('/email-available/<email>', methods=['GET'])
@@ -39,11 +39,13 @@ def account_login():
 def account_email_available(email):
     with get_db_cursor(commit=True) as cur:
         cur.execute('''
-                    SELECT email FROM users WHERE email = %s
+                    SELECT email FROM accounts WHERE email = lower(%s)
                     ''', (email,))
         res = cur.fetchone()
-        if res is None:
-            return success_response({'data': {'available': email}})
+        if res is not None:
+            raise InvalidUsage('Email not available.',
+                               'email_not_available')
+    return success_response({'data': {'available': email}})
 
 
 @account.route('/signup', methods=['POST'])
@@ -64,11 +66,13 @@ def account_signup():
                                    %(insulin_tdd)s,
                                    %(background_dose)s,
                                    %(pre_meal_target)s,
-                                   %(post_meal_target)s
+                                   %(post_meal_target)s)
                     AS response
                     ''', req)
         res = cur.fetchone()['response']
-        success_response({'data': {'account_id': res['account_id']}})
+        if not res['success']:
+            raise InvalidUsage(res['message'], res['status'])
+    return success_response({'data': {'account_id': res['account_id']}})
 
 
 @account.route('/verify/phone/<account_uuid>/<int:phone_code>',
