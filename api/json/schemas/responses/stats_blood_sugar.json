@@ -17,7 +17,7 @@
                     "type": "object",
                     "properties":
                     {
-                        "timestamp": { "type": "integer" },
+                        "timestamp": { "type": "string" },
                         "reading":   { "type": "number" }
                     }
                 }
