@@ -16,12 +16,19 @@ app.config.from_envvar('APP_SETTINGS')
 
 # Initialize connection pools
 url = urlparse(app.config['DATABASE_URL'])
+if 'DATABASE_USER' in app.config and 'DATABASE_PASS' in app.config:
+    db_info = {"database": url.path[1:],
+               "user": app.config['DATABASE_USER'],
+               "password": app.config['DATABASE_PASS'],
+               "host": url.hostname,
+               "port": url.port}
+else:
+    db_info = {"database": url.path[1:],
+               "host": url.hostname,
+               "port": url.port}
+
 pool = ThreadedConnectionPool(1, 20,
-                              database=url.path[1:],
-                              user=app.config['DATABASE_USER'],
-                              password=app.config['DATABASE_PASS'],
-                              host=url.hostname,
-                              port=url.port)
+                              **db_info)
 
 
 @app.errorhandler(Exception)
