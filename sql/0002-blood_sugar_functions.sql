@@ -13,35 +13,29 @@ CF = 1800 / TDI
 grams of carbs covered by 1 dose of insulin = 450 / total daily insulin dosage
 g-CHO = 450 / TDI
 */
-CREATE FUNCTION set_basal_correction_factor(_account_id INTEGER)
-RETURNS VOID
+CREATE FUNCTION set_basal_correction_factor(_insulin_tdd INTEGER)
+RETURNS NUMERIC
 LANGUAGE SQL
 AS
 $$
 	--How much insulin to use to counter-act X grams of carbs:
-	UPDATE accounts
-        SET basal_corr_factor = 1500.0 / insulin_tdd
-    		WHERE account_id = _account_id;
+	SELECT 1500.0 / _insulin_tdd;
 $$;
-CREATE FUNCTION set_bolus_correction_factor(_account_id INTEGER)
-RETURNS VOID
+CREATE FUNCTION set_bolus_correction_factor(_insulin_tdd INTEGER)
+RETURNS NUMERIC
 LANGUAGE SQL
 AS
 $$
 	--How much insulin to use to counter-act X grams of carbs:
-	UPDATE accounts
-        SET bolus_corr_factor = 1800.0 / insulin_tdd
-    		WHERE account_id = _account_id;
+	SELECT 1800.0 / _insulin_tdd;
 $$;
-CREATE FUNCTION set_grams_of_carb_per_unit(_account_id INTEGER)
-RETURNS VOID
+CREATE FUNCTION set_grams_of_carb_per_unit(_insulin_tdd INTEGER)
+RETURNS NUMERIC
 LANGUAGE SQL
 AS
 $$
 	--How much insulin to use to counter-act X grams of carbs:
-	UPDATE accounts
-        SET grams_carb_per_unit = 450.0 / insulin_tdd
-    		WHERE account_id = _account_id;
+	SELECT 450.0 / _insulin_tdd;
 $$;
 
 CREATE FUNCTION food_insulin_units_required(_account_id INTEGER, _food_id INTEGER, _servings NUMERIC)
