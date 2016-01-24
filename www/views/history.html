@@ -1,0 +1,100 @@
+<div class="row">
+<div class="col-sm-12">
+  <div class="widget widget-fullwidth widget-small">
+    <div class="widget-head">
+      <div class="title">Meals</div>
+    </div>
+    <table id="table1" class="table table-striped table-hover table-fw-widget">
+    <div class="col-sm-6"><div id="table1_length" class="dataTables_length"></div></div><div class="col-sm-6"><div class="dataTables_filter" id="table1_filter">
+    <label style="float:right;">Search:
+    <input class="form-control input-sm" style="padding:0;" type="search"></label></div></div>
+    <!--
+     Calories
+     Fat
+     Cholesterol
+     Sodium
+     Carbohydrates
+     Fibre
+     Sugar
+     Protein -->
+
+      <thead>
+        <tr>
+          <th> Time </th>
+          <th> Calories </th>
+          <th> Fat </th>
+          <th> Cholesterol </th>
+          <th> Sodium </th>
+          <th> Carbohydrates </th>
+          <th> Fibre </th>
+          <th> Sugar </th>
+          <th> Protein </th>
+          <th> Serving </th>
+        </tr>
+      </thead>
+        <tbody>
+            <tr ng-repeat="meals in mealsHistory">
+              <td>{{ meals.timestamp }}</td>
+              <td>{{ meals.calories }}</td>
+              <td>{{ meals.fat }}</td>
+              <td>{{ meals.cholesterol }}</td>
+              <td>{{ meals.sodium }}</td>
+              <td>{{ meals.carbs }}</td>
+              <td>{{ meals.fibre }}</td>
+              <td>{{ meals.sugar }}</td>
+              <td>{{ meals.protein }}</td>
+              <td> {{meals.servings}}</td>
+            </tr>
+        </tbody>
+  </div>
+</div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+      <div class="widget widget-fullwidth widget-small">
+        <div class="widget-head">
+          <div class="title">Blood Sugar Level</div>
+        </div>
+        <table id="table2" class="table table-striped table-hover table-fw-widget">
+        <div class="col-sm-6"><div id="table2_length" class="dataTables_length"></div></div><div class="col-sm-6"><div class="dataTables_filter" id="table2_filter"><label style="float:right;">Search:
+        <input class="form-control input-sm" style="padding:0;" type="search"></label></div></div>
+          <thead>
+            <tr>
+              <th>Time</th>
+              <th>Blood Sugar Level</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="sugar in sugarData">
+              <td>{{ sugar.timestamp }}</td>
+              <td>{{ sugar.reading }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+</div>
+<div class="row">
+  <div class="col-sm-12">
+    <div class="widget widget-fullwidth widget-small">
+      <div class="widget-head">
+        <div class="title">Insulin Intake</div>
+      </div>
+      <table id="table1" class="table table-striped table-hover table-fw-widget">
+      <div class="col-sm-6"><div id="table2_length" class="dataTables_length"></div></div><div class="col-sm-6"></div>
+        <thead>
+          <tr>
+            <th>Time</th>
+            <th>Number of Units of Insulin</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="ins in insulinIntake">
+            <td>{{ins.id}}</td>
+            <td>{{ins.name}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
