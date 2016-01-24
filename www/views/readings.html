@@ -9,7 +9,7 @@
           <div class="form-group">
             <label for="bloodSugarLevel" class="col-sm-3 control-label">Blood Sugar      (in mmol/L)</label>
             <div class="col-sm-3">
-              <input id="bloodSugarLevel" class="form-control">
+              <input id="bloodSugarLevel" class="form-control" ng-model="bloodSugar.units">
             </div>
             <label for="bloodSugarLevelTime" class="col-sm-3 control-label">Time recorded</label>
             <div class="col-sm-3">
@@ -21,7 +21,7 @@
           <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
               <div class="spacer text-right">
-                <button type="submit" class="btn btn-space btn-primary">Submit</button>
+                <button type="submit" class="btn btn-space btn-primary" ng-click="sendBloodSugar(bloodSugar)">Submit</button>
               </div>
             </div>
           </div>
@@ -39,7 +39,7 @@
           <div class="form-group">
             <label for="bloodSugarLevel" class="col-sm-3 control-label">Insulin Units    (in units)</label>
             <div class="col-sm-3">
-              <input id="insulinSugarLevel" class="form-control">
+              <input id="insulinSugarLevel" ng-model="insulinLevel.units" class="form-control">
             </div>
             <label for="insulinLevelTime" class="col-sm-3 control-label">Time recorded</label>
             <div class="col-sm-3">
@@ -51,7 +51,7 @@
           <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
               <div class="spacer text-right">
-                <button type="submit" class="btn btn-space btn-primary">Submit</button>
+                <button type="submit" ng-click="sendInsulin(insulinLevel)" class="btn btn-space btn-primary">Submit</button>
               </div>
             </div>
           </div>
@@ -61,17 +61,12 @@
   </div>
 </div>
 <script>
-var date = Date.now()
-
+var date = moment()
   for(var i = 0; i < 10; i++){  
-    date2 = new  Date(date - (900000*i) )
+    date2 = date.subtract(5*i, 'minutes')
+    date2 = date2.format('h:mm a');
     //date = date.getHours()
-    hours = date2.getHours()
-    minutes = date2.getMinutes()
-    if(minutes < 10){
-      minutes = "00"
-  }
-  $('#insulinLevelTime').append('<option>'+ hours + ':'+ minutes+'</option>');
-  $('#bloodSugarLevelTime').append('<option>'+ hours + ':'+ minutes+'</option>');
+  $('#insulinLevelTime').append('<option>'+ date2+'</option>');
+  $('#bloodSugarLevelTime').append('<option>'+ date2+'</option>');
 }
 </script>
