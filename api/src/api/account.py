@@ -55,29 +55,21 @@ def account_signup():
     with get_db_cursor(commit=True) as cur:
         cur.execute('''
                     SELECT
-                    account_signup (%(account_type)s, %(email)s, %(password)s,
-                                    %(first_name)s, %(last_name)s,
-                                    %(email)s, %(phone_number)s,
-                                    %(bio)s, %(latitude)s, %(longitude)s,
-                                    %(facebook_user_id)s)
+                    account_signup(%(first_name)s, %(last_name)s,
+                                   %(height)s, %(weight)s,
+                                   %(sex)s, %(dob)s,
+                                   %(email)s, %(password)s,
+                                   %(diabetes_type)s,
+                                   %(high_blood_pressure)s,
+                                   %(pregnant)s,
+                                   %(insulin_tdd)s,
+                                   %(background_dose)s,
+                                   %(pre_meal_target)s,
+                                   %(post_meal_target)s
                     AS response
                     ''', req)
         res = cur.fetchone()['response']
-        if not res['success']:
-            raise InvalidUsage(res['message'], res['status'])
-        cur.execute('''
-                    SELECT row_to_json(accounts) as account_info
-                    FROM accounts
-                    WHERE account_id = %(account_id)s
-                    ''', res)
-        account = cur.fetchone()['account_info']
-        request_phone_confirm(app.config['QUEUE_PREFIX'], account)
-
-        errors = []
-    resp = success_response({'data': {'account_uuid': account['account_uuid']}})
-    if len(errors) > 0:
-        resp['errors'] = errors
-    return resp
+        success_response({'data': {'account_id': res['account_id']}})
 
 
 @account.route('/verify/phone/<account_uuid>/<int:phone_code>',

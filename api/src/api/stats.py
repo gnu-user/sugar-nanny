@@ -1,9 +1,7 @@
 from app import get_db_cursor
-from flask import Blueprint, g
-from auth import requires_auth
+from flask import Blueprint
 from error import InvalidUsage
 from utils import (success_response,
-                   ensure_valid_uuid,
                    validate_response)
 
 stats = Blueprint('stats', __name__)
