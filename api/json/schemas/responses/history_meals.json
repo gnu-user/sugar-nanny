@@ -1,0 +1,37 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+
+    "type": "object",
+
+    "properties":
+    {
+        "success":   { "type": "boolean" },
+        "code":      { "type": "integer" },
+        "status":    { "type": "string" },
+        "data":
+        {
+            "type": "array",
+            "items":
+            [
+                {
+                    "type": "object",
+                    "properties":
+                    {
+                        "timestamp":     { "type": "integer" },
+                        "servings":      { "type": "number" },
+                        "calories":      { "type": "number" },
+                        "fat":           { "type": "number" },
+                        "cholesterol":   { "type": "number" },
+                        "sodium":        { "type": "number" },
+                        "carbs":         { "type": "number" },
+                        "fibre":         { "type": "number" },
+                        "sugar":         { "type": "number" },
+                        "protein":       { "type": "number" }
+                    }
+                }
+            ]
+        },
+        "errors":    { "type": "array" }
+    },
+    "required": ["success", "code", "status"]
+}
