@@ -41,7 +41,7 @@ def food_retrieve(food_id):
 def food_calculate(account_id, food_id, servings):
     with get_db_cursor(commit=True) as cur:
         cur.execute('''
-                    SELECT round(food_insulin_units_required(%s, %s, %s), 1)
+                    SELECT round(food_insulin_units_required(%s, %s, %s))::INTEGER
                     AS response
                     ''', (account_id, food_id, servings))
         res = cur.fetchone()['response']
