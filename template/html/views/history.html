@@ -32,14 +32,14 @@
                   </thead>
                     <tbody>
                         <tr ng-repeat="meals in mealsHistory">
-                          <td>{{ rows.Calories }}</td>
-                          <td>{{ rows.Fat }}</td>
-                          <td>{{ rows.Cholesterol }}</td>
-                          <td>{{ rows.Sodium }}</td>
-                          <td>{{ rows.Carbohydrates }}</td>
-                          <td>{{ rows.Fibre }}</td>
-                          <td>{{ rows.Sugar }}</td>
-                          <td>{{ rows.Protein }}</td>
+                          <td>{{ meals.Calories }}</td>
+                          <td>{{ meals.Fat }}</td>
+                          <td>{{ meals.Cholesterol }}</td>
+                          <td>{{ meals.Sodium }}</td>
+                          <td>{{ meals.Carbohydrates }}</td>
+                          <td>{{ meals.Fibre }}</td>
+                          <td>{{ meals.Sugar }}</td>
+                          <td>{{ meals.Protein }}</td>
                         </tr>
                     </tbody>
               </div>
@@ -58,30 +58,18 @@
                     <tr>
                       <th>Time</th>
                       <th>Blood Sugar Level</th>
-
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>Trident</td>
-                      <td>
-                        Internet
-                        Explorer 4.0
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>Trident</td>
-                      <td>
-                        Internet
-                        Explorer 5.0
-                      </td>
+                    <tr ng-model="sugar in sugarData">
+                      <td>{{ sugar.time }}</td>
+                      <td>{{ sugar.sugar }}</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
             </div>
 </div>
-<<<<<<< HEAD
   <div class="row">
       <div class="col-sm-12">
         <div class="widget widget-fullwidth widget-small">
@@ -107,41 +95,5 @@
         </div>
       </div>
   </div>
-=======
-<div class="row">
-            <div class="col-sm-12">
-              <div class="widget widget-fullwidth widget-small">
-                <div class="widget-head">
-                  <div class="title">Insulin Intake</div>
-                </div>
-                <table id="table1" class="table table-striped table-hover table-fw-widget">
-                <div class="col-sm-6"><div id="table2_length" class="dataTables_length"></div></div><div class="col-sm-6"><div class="dataTables_filter" id="table2_filter"><label style="float:right;">Search:
-                <input class="form-control input-sm" style="padding:0;" type="search"></label></div></div>
-                  <thead>
-                    <tr>
-                      <th>Time</th>
-                      <th>Intake</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Trident</td>
-                      <td>
-                        Internet
-                        Explorer 4.0
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>Trident</td>
-                      <td>
-                        Internet
-                        Explorer 5.0
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
->>>>>>> de6d54beef134e7e653d3431eaf38ef6ab68aa3e
 </div>
 </div>

@@ -52,18 +52,21 @@
     });
   });
 
-  app.controller('DashCtrl', function($rootScope, $scope, $routeParams, $http){
+  app.controller('DashCtrl', function($rootScope, $scope, $location, $routeParams, $http){
 
     $scope.page = "Dashboard"
 
-      // Calories
-      // Fat
-      // Cholesterol
-      // Sodium
-      // Carbohydrates
-      // Fibre
-      // Sugar
-      // Protein
+    $http({method: 'GET', url: 'http://jsonplaceholder.typicode.com/users'})
+          .success(function(data, status, headers, config) {
+              $scope.mealsHistory = data
+          }).
+            error(function(data, status, headers, config) {
+            // called asynchronously if an error occurs
+            // or server returns response with an error status.
+            console.log('page not found:', data);
+          });
+    
+
     $scope.doSearch = function() {
       if($scope.search.length > 3){
 
@@ -87,6 +90,7 @@
       }).
         success(function(data, status, headers, config) {
           $scope.foodInformation = data;
+          $location.url('/meal');
       }).
         error(function(data, status, headers, config) {
         // called asynchronously if an error occurs
