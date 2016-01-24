@@ -13,7 +13,7 @@
             "type": "object",
             "properties":
             {
-                "user_id":   { "type": "integer" }
+                "account_id":   { "type": "integer" }
             }
         },
         "errors":  { "type": "array" }

@@ -38,6 +38,18 @@ $$
 	SELECT round(450.0 / _insulin_tdd, 3);
 $$;
 
+CREATE FUNCTION insulin_from_carbs(_account_id INTEGER, _food_id INTEGER, _servings NUMERIC)
+RETURNS NUMERIC
+LANGUAGE SQL
+AS
+$$
+	--How much insulin to use to counter-act X grams of carbs:
+	SELECT round((f.carbohydrates_100g / a.grams_carb_per_unit) * _servings)
+        FROM foods AS f, accounts AS a
+        WHERE a.account_id = _account_id AND f.food_id = _food_id;
+$$;
+
+
 CREATE FUNCTION food_insulin_units_required(_account_id INTEGER, _food_id INTEGER, _servings NUMERIC)
 RETURNS NUMERIC
 LANGUAGE SQL
