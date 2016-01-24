@@ -67,9 +67,10 @@ for i in range(1, 6):
         date += one_day
 
 
+servings = [0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2];
 meals = [58563, 17692, 48467, 65873, 54373, 3107, 5863, 3957, 1386, 65326, 10526, 1138, 356]
 
-for i in range(1, 7):
+for i in range(1, 6):
     today = dt.date.today()
     date = today - dt.timedelta(days=31)
 
@@ -79,21 +80,21 @@ for i in range(1, 7):
 
         entries = [];
 
-        breakfast = dt.time(random.randrange(7,8), random.randrange(0,59), 0)
-        entries.append( (i, str(date) + " " + str(breakfast), random.choice(meals)) );
+        breakfast = dt.time(r.randrange(7,8), r.randrange(0,59), 0)
+        entries.append( (i, r.choice(meals), str(date) + " " + str(breakfast), r.choice(servings)) );
  
-        lunch = dt.time(random.randrange(12,13), random.randrange(0,59), 0)
-        entries.append( (i, str(date) + " " + str(lunch), random.choice(meals)) );
+        lunch = dt.time(r.randrange(12,13), r.randrange(0,59), 0)
+        entries.append( (i, r.choice(meals), str(date) + " " + str(lunch), r.choice(servings)) );
 
-        dinner = dt.time(random.randrange(17,18), random.randrange(0,59), 0)
-        entries.append( (i, str(date) + " " + str(dinner), random.choice(meals)) );
+        dinner = dt.time(r.randrange(17,18), r.randrange(0,59), 0)
+        entries.append( (i, r.choice(meals), str(date) + " " + str(dinner), r.choice(servings)) );
 
         with pg.connect(**db_info) as conn:
             for entry in entries:
                 with conn.cursor() as cur:
                     cur.execute('''
-                            INSERT INTO readings (account_id, reading_timestamp, reading)
-                            VALUES (%s, %s, %s)
+                            INSERT INTO food_history (account_id, food_id, food_timestamp, food_servings)
+                            VALUES (%s, %s, %s, %s)
                            ''', entry)
         date += one_day
 
