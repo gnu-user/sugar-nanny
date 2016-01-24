@@ -1,7 +1,7 @@
 from app import get_db_cursor
 from flask import Blueprint
 from error import InvalidUsage
-
+from cache import cache
 from utils import (success_response,
                    ensure_valid_uuid,
                    validate_request,
@@ -35,6 +35,7 @@ def account_login():
 
 
 @account.route('/email-available/<email>', methods=['GET'])
+@cache.memoize()
 @validate_response()
 def account_email_available(email):
     with get_db_cursor(commit=True) as cur:
@@ -75,37 +76,37 @@ def account_signup():
     return success_response({'data': {'account_id': res['account_id']}})
 
 
-@account.route('/verify/phone/<account_uuid>/<int:phone_code>',
-               methods=['GET'])
+@account.route('/profile/<account_id>', methods=['GET'])
+@cache.memoize()
 @validate_response()
-def account_phone_verify(account_uuid, phone_code):
-    ensure_valid_uuid(account_uuid, 'account UUID')
+def account_profile(account_id):
     with get_db_cursor(commit=True) as cur:
         cur.execute('''
-                    SELECT
-                    account_verify_phone(%s, %s)
+                    SELECT json_build_object(
+                            'first_name', first_name,
+                            'last_name', last_name,
+                            'height', height,
+                            'weight', weight,
+                            'sex', sex,
+                            'dob', dob,
+                            'email', email,
+                            'diabetes_type', diabetes_type,
+                            'high_blood_pressure', high_blood_pressure,
+                            'pregnant', pregnant,
+                            'insulin_tdd', insulin_tdd,
+                            'background_dose', background_dose,
+                            'pre_meal_target', pre_meal_target,
+                            'post_meal_target', post_meal_target,
+                            'basal_corr_factor', basal_corr_factor,
+                            'bolus_corr_factor', bolus_corr_factor,
+                            'grams_carb_per_unit', grams_carb_per_unit)::JSONB
                     AS response
-                    ''', (account_uuid, phone_code))
-        res = cur.fetchone()['response']
-        if not res['success']:
-            raise InvalidUsage(res['message'],
-                               res['status'])
-    return success_response({'data': {'phone_number': res['phone_number']}})
-
-
-@account.route('/profile/<account_uuid>', methods=['GET'])
-@validate_response()
-def account_profile(account_uuid):
-    ensure_valid_uuid(account_uuid, 'account UUID')
-    with get_db_cursor(commit=True) as cur:
-        cur.execute('''
-                    SELECT account_info_public(accounts) AS account_info
                     FROM accounts
-                    WHERE account_uuid = %s
-                    ''', (account_uuid,))
-        account = cur.fetchone()
+                    WHERE account_id = %s
+                    ''', (account_id,))
+        account = cur.fetchone()['response']
         if account is None:
             raise InvalidUsage('There are no accounts with '
-                               'the provided UUID.',
+                               'the provided id.',
                                'account_not_found')
-        return success_response({'data': account['account_info']})
+        return success_response({'data': account})

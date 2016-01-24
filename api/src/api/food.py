@@ -1,6 +1,7 @@
 from app import get_db_cursor
 from flask import Blueprint
 from error import InvalidUsage
+from cache import cache
 from utils import (success_response,
                    ensure_valid_uuid,
                    validate_request,
@@ -11,6 +12,7 @@ food = Blueprint('food', __name__)
 
 @food.route('/search/<query>', methods=['GET'])
 @food.route('/search/<query>/<results>', methods=['GET'])
+@cache.memoize()
 @validate_response()
 def food_search(query, results=10):
     with get_db_cursor(commit=True) as cur:
@@ -22,6 +24,7 @@ def food_search(query, results=10):
 
 
 @food.route('/retrieve/<food_id>', methods=['GET'])
+@cache.memoize()
 @validate_response()
 def food_retrieve(food_id):
     with get_db_cursor(commit=True) as cur:
@@ -33,6 +36,7 @@ def food_retrieve(food_id):
 
 
 @food.route('/calculate/<account_id>/<food_id>/<servings>', methods=['GET'])
+@cache.memoize()
 @validate_response()
 def food_calculate(account_id, food_id, servings):
     with get_db_cursor(commit=True) as cur:
@@ -45,6 +49,7 @@ def food_calculate(account_id, food_id, servings):
 
 
 @food.route('/record/<account_id>/<food_id>/<servings>', methods=['GET'])
+@cache.memoize()
 @validate_response()
 def food_record(account_id, food_id, servings):
     with get_db_cursor(commit=True) as cur:

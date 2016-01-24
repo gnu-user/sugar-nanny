@@ -1,6 +1,7 @@
 from app import get_db_cursor
 from flask import Blueprint
 from error import InvalidUsage
+from cache import cache
 from utils import (success_response,
                    validate_response)
 
@@ -8,6 +9,7 @@ history = Blueprint('history', __name__)
 
 
 @history.route('/blood_sugar/<account_id>', methods=['GET'])
+@cache.memoize()
 @validate_response()
 def history_blood_sugar(account_id):
     with get_db_cursor(commit=True) as cur:
@@ -22,6 +24,7 @@ def history_blood_sugar(account_id):
 
 
 @history.route('/insulin/<account_id>', methods=['GET'])
+@cache.memoize()
 @validate_response()
 def history_insulin(account_id):
     with get_db_cursor(commit=True) as cur:
@@ -36,6 +39,7 @@ def history_insulin(account_id):
 
 
 @history.route('/meals/<account_id>', methods=['GET'])
+@cache.memoize()
 @validate_response()
 def history_meals(account_id):
     with get_db_cursor(commit=True) as cur:

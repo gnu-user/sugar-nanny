@@ -6,6 +6,7 @@ from flask import (Flask, jsonify)
 import psycopg2
 import psycopg2.extras
 import traceback
+from cache import cache
 from psycopg2.pool import ThreadedConnectionPool
 from exceptions import Exception
 from error import AuthError, InvalidUsage
@@ -13,6 +14,7 @@ from utils import error_response, LOGGER
 
 app = Flask(__name__)
 app.config.from_envvar('APP_SETTINGS')
+cache.init_app(app)
 
 # Initialize connection pools
 url = urlparse(app.config['DATABASE_URL'])
@@ -27,8 +29,7 @@ else:
                "host": url.hostname,
                "port": url.port}
 
-pool = ThreadedConnectionPool(1, 20,
-                              **db_info)
+pool = ThreadedConnectionPool(1, 20, **db_info)
 
 
 @app.errorhandler(Exception)
