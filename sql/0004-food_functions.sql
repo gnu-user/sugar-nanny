@@ -29,6 +29,6 @@ AS
 $$
     SELECT json_agg(json_build_object( (SELECT food_id, product_name
                                 FROM foods
-                                WHERE product_name LIKE '%' || lower(_query) || '%') );
+                                WHERE product_name LIKE '%' || lower(_query) || '%') )
                    )::JSONB AS response
 $$;

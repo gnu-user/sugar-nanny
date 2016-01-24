@@ -65,3 +65,35 @@ for i in range(1, 6):
                             VALUES (%s, %s, %s)
                            ''', info)
         date += one_day
+
+
+meals = [58563, 17692, 48467, 65873, 54373, 3107, 5863, 3957, 1386, 65326, 10526, 1138, 356]
+
+for i in range(1, 7):
+    today = dt.date.today()
+    date = today - dt.timedelta(days=31)
+
+    one_day = dt.timedelta(days=1)
+
+    while date != today:
+
+        entries = [];
+
+        breakfast = dt.time(random.randrange(7,8), random.randrange(0,59), 0)
+        entries.append( (i, str(date) + " " + str(breakfast), random.choice(meals)) );
+ 
+        lunch = dt.time(random.randrange(12,13), random.randrange(0,59), 0)
+        entries.append( (i, str(date) + " " + str(lunch), random.choice(meals)) );
+
+        dinner = dt.time(random.randrange(17,18), random.randrange(0,59), 0)
+        entries.append( (i, str(date) + " " + str(dinner), random.choice(meals)) );
+
+        with pg.connect(**db_info) as conn:
+            for entry in entries:
+                with conn.cursor() as cur:
+                    cur.execute('''
+                            INSERT INTO readings (account_id, reading_timestamp, reading)
+                            VALUES (%s, %s, %s)
+                           ''', entry)
+        date += one_day
+
