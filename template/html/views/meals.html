@@ -8,12 +8,34 @@
         <div class="col-sm-6"><div id="table2_length" class="dataTables_length"></div></div><div class="col-sm-12"><div class="dataTables_filter" id="table2_filter"><label>
         <input class="form-control input-sm" style="padding:0;" type="search" ng-change="doSearch()" ng-model="search" ng-model-options='{ debounce: 1000 }'>
         </label></div></div>
+        <!-- Calories
+        Fat
+        Cholesterol
+        Sodium
+        Carbohydrates
+        Fibre
+        Sugar
+        Protein -->
           <thead>
+            <th> Calories </th>
+            <th> Fat </th>
+            <th> Cholesterol </th>
+            <th> Sodium </th>
+            <th> Carbohydrates </th>
+            <th> Fibre </th>
+            <th> Sugar </th>
+            <th> Protein </th>
           </thead>
           <tbody>
               <tr ng-repeat="rows in searchResults" ng-click="foodSelected(rows)">
-              <td>{{ rows.id }}</td>
-              <td>{{ rows.name }}</td>
+                <td>{{ rows.Calories }}</td>
+                <td>{{ rows.Fat }}</td>
+                <td>{{ rows.Cholesterol }}</td>
+                <td>{{ rows.Sodium }}</td>
+                <td>{{ rows.Carbohydrates }}</td>
+                <td>{{ rows.Fibre }}</td>
+                <td>{{ rows.Sugar }}</td>
+                <td>{{ rows.Protein }}</td>
               </tr>
           </tbody>
         </table>

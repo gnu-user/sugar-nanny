@@ -8,46 +8,67 @@
                 <table id="table1" class="table table-striped table-hover table-fw-widget">
                 <div class="col-sm-6"><div id="table1_length" class="dataTables_length"></div></div><div class="col-sm-6"><div class="dataTables_filter" id="table1_filter"><label style="float:right;">Search:
                 <input class="form-control input-sm" style="padding:0;" type="search"></label></div></div>
+                <!--
+                 Calories
+                 Fat
+                 Cholesterol
+                 Sodium
+                 Carbohydrates
+                 Fibre
+                 Sugar
+                 Protein -->
+
+                  <thead>
+                    <tr>
+                      <th> Calories </th>
+                      <th> Fat </th>
+                      <th> Cholesterol </th>
+                      <th> Sodium </th>
+                      <th> Carbohydrates </th>
+                      <th> Fibre </th>
+                      <th> Sugar </th>
+                      <th> Protein </th>
+                    </tr>
+                  </thead>
+                    <tbody>
+                        <tr ng-repeat="meals in mealsHistory">
+                          <td>{{ meals.Calories }}</td>
+                          <td>{{ meals.Fat }}</td>
+                          <td>{{ meals.Cholesterol }}</td>
+                          <td>{{ meals.Sodium }}</td>
+                          <td>{{ meals.Carbohydrates }}</td>
+                          <td>{{ meals.Fibre }}</td>
+                          <td>{{ meals.Sugar }}</td>
+                          <td>{{ meals.Protein }}</td>
+                        </tr>
+                    </tbody>
+              </div>
+            </div>
+</div>
+<div class="row">
+            <div class="col-sm-12">
+              <div class="widget widget-fullwidth widget-small">
+                <div class="widget-head">
+                  <div class="title">Blood Sugar Level</div>
+                </div>
+                <table id="table1" class="table table-striped table-hover table-fw-widget">
+                <div class="col-sm-6"><div id="table2_length" class="dataTables_length"></div></div><div class="col-sm-6"><div class="dataTables_filter" id="table2_filter"><label style="float:right;">Search:
+                <input class="form-control input-sm" style="padding:0;" type="search"></label></div></div>
                   <thead>
                     <tr>
                       <th>Time</th>
-                      <th>Food</th>
+                      <th>Blood Sugar Level</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr ng-repeat="meals in mealsHistory">
-                      <td>{{meals.id}}</td>
-                      <td>{{meals.name}}</td>
+                    <tr ng-model="sugar in sugarData">
+                      <td>{{ sugar.time }}</td>
+                      <td>{{ sugar.sugar }}</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
             </div>
-</div>
-<div class="row">
-  <div class="col-sm-12">
-    <div class="widget widget-fullwidth widget-small">
-      <div class="widget-head">
-        <div class="title">Blood Sugar Level</div>
-      </div>
-      <table id="table1" class="table table-striped table-hover table-fw-widget">
-      <div class="col-sm-6"><div id="table2_length" class="dataTables_length"></div></div><div class="col-sm-6"><div class="dataTables_filter" id="table2_filter"><label style="float:right;">Search:
-      <input class="form-control input-sm" style="padding:0;" type="search"></label></div></div>
-        <thead>
-          <tr>
-            <th>Time</th>
-            <th>Blood Sugar Level</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr ng-repeat="bsl in bloodSugarLevel">
-            <td>{{bsl.id}}</td>
-            <td>{{bsl.name}}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-</div>
 </div>
   <div class="row">
       <div class="col-sm-12">
@@ -61,7 +82,7 @@
             <thead>
               <tr>
                 <th>Time</th>
-                <th>Insulin Intake</th>
+                <th>Number of Units of Insulin</th>
               </tr>
             </thead>
             <tbody>
@@ -74,4 +95,5 @@
         </div>
       </div>
   </div>
+</div>
 </div>
