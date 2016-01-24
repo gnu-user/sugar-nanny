@@ -1,36 +1,36 @@
 CREATE EXTENSION "citext";
 
-CREATE TABLE users
+CREATE TABLE accounts
 (
-    user_id             SERIAL      NOT NULL PRIMARY KEY,
-    first_name          TEXT        DEFAULT NULL,
-    last_name           TEXT        DEFAULT NULL,
-    height              NUMERIC     DEFAULT NULL,
-    weight              NUMERIC     DEFAULT NULL,
-    sex                 CHAR(1)     DEFAULT NULL,
-    dob                 DATE        DEFAULT NULL,
+    account_id          SERIAL      NOT NULL PRIMARY KEY,
+    first_name          TEXT        NOT NULL,
+    last_name           TEXT        NOT NULL,
+    height              NUMERIC     NOT NULL,
+    weight              NUMERIC     NOT NULL,
+    sex                 CHAR(1)     NOT NULL,
+    dob                 DATE        NOT NULL,
     email               CITEXT      NOT NULL UNIQUE,
     password            TEXT        NOT NULL,
     -- Diabetes specifics
-    diabetes_type       INTEGER     DEFAULT NULL,
-    high_blood_pressure BOOLEAN     DEFAULT NULL,
-    pregnant            BOOLEAN     DEFAULT NULL,
-    insulin_tdd         INTEGER     DEFAULT NULL,
-    background_dose     INTEGER     DEFAULT NULL,
-    pre_meal_target	NUMERIC     DEFAULT NULL,
-    post_meal_target	NUMERIC     DEFAULT NULL,
-    basal_corr_factor   NUMERIC     DEFAULT NULL,
-    bolus_corr_factor   NUMERIC     DEFAULT NULL,
-    grams_carb_per_unit NUMERIC     DEFAULT NULL
+    diabetes_type       INTEGER     NOT NULL,
+    high_blood_pressure BOOLEAN     NOT NULL,
+    pregnant            BOOLEAN     NOT NULL,
+    insulin_tdd         INTEGER     NOT NULL,
+    background_dose     INTEGER     NOT NULL,
+    pre_meal_target	    NUMERIC     NOT NULL,
+    post_meal_target	NUMERIC     NOT NULL,
+    basal_corr_factor   NUMERIC     NOT NULL,
+    bolus_corr_factor   NUMERIC     NOT NULL,
+    grams_carb_per_unit NUMERIC     NOT NULL
 );
 
-CREATE UNIQUE INDEX ON users(email);
+CREATE UNIQUE INDEX ON accounts(email);
 
 
 CREATE TABLE readings
 (
     reading_id          SERIAL      NOT NULL PRIMARY KEY,
-    user_id             INTEGER     REFERENCES users(user_id) NOT NULL,
+    account_id          INTEGER     REFERENCES accounts(account_id) NOT NULL,
     reading_timestamp   TIMESTAMP   WITH TIME ZONE DEFAULT (now() AT TIME ZONE 'EST') NOT NULL,
     reading             NUMERIC     NOT NULL
 );
@@ -39,7 +39,7 @@ CREATE TABLE readings
 CREATE TABLE doses
 (
     dose_id             SERIAL      NOT NULL PRIMARY KEY,
-    user_id             INTEGER     REFERENCES users(user_id) NOT NULL,
+    account_id          INTEGER     REFERENCES accounts(account_id) NOT NULL,
     dose_timestamp      TIMESTAMP   WITH TIME ZONE DEFAULT (now() AT TIME ZONE 'EST') NOT NULL,
     dose_units          INTEGER     NOT NULL
 );
@@ -555,7 +555,7 @@ UPDATE foods SET categories_en = lower(categories_en);
 CREATE TABLE food_history
 (
     food_history_id     SERIAL      NOT NULL PRIMARY KEY,
-    user_id             INTEGER     REFERENCES users(user_id) NOT NULL,
+    account_id          INTEGER     REFERENCES accounts(account_id) NOT NULL,
     food_id             INTEGER     REFERENCES foods(food_id) NOT NULL,
     food_timestamp      TIMESTAMP   WITH TIME ZONE DEFAULT (now() AT TIME ZONE 'EST') NOT NULL,
     food_servings       NUMERIC     NOT NULL
