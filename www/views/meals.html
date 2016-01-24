@@ -1,4 +1,17 @@
-<div class="row">
+<div ng-show="insulinInfo != null" class="row">
+  <div class="col-md-12">
+    <div class="panel panel-full-alt3">
+      <div class="panel-heading">
+        <span class="title" style="font-weight: bold;">Insulin Reminder!</span>
+      </div>
+      <div class="panel-body" style="font-size: 125%;">
+        <p>Make sure that you take <strong>{{ insulinInfo.units }} insulin units</strong> within 15 minutes after eating your meal!</p>
+        <p><strong>DISCLAIMER:</strong> Sugar Nanny is not a replacement for medical advice from a certified doctor, please always refer to your doctor when seeking advice on insulin dosages. Sugar Nanny is provided as an assistant but IS NOT a replacement for a trained medical practitioner.</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div ng-show="insulinInfo == null" class="row">
     <div class="col-sm-12">
       <div class="widget widget-fullwidth widget-small">
         <div class="widget-head">
@@ -17,9 +30,9 @@
         Sugar
         Protein -->
           <thead>
+            <th> Food </th>
             <th> Calories </th>
             <th> Fat </th>
-            <th> Cholesterol </th>
             <th> Sodium </th>
             <th> Carbohydrates </th>
             <th> Fibre </th>
@@ -27,10 +40,10 @@
             <th> Protein </th>
           </thead>
           <tbody>
-              <tr ng-repeat="rows in searchResults" ng-click="foodSelected(rows)">
+              <tr ng-repeat="meals in searchResults" ng-click="foodSelected(meals)">
+                <td>{{ meals.product_name }}</td>
                 <td>{{ meals.calories }}</td>
                 <td>{{ meals.fat }}</td>
-                <td>{{ meals.cholesterol }}</td>
                 <td>{{ meals.sodium }}</td>
                 <td>{{ meals.carbs }}</td>
                 <td>{{ meals.fibre }}</td>

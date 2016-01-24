@@ -8,7 +8,7 @@
       <thead>
         <tr>
           <th> Time </th>
-          <th> Name </th>
+          <th> Food </th>
           <th> Fat </th>
           <th> Calories </th>
           <th> Sodium </th>
@@ -39,7 +39,7 @@
 </div>
 
 <div class="row">
-    <div class="col-sm-12">
+    <div class="col-sm-6">
       <div class="widget widget-fullwidth widget-small">
         <div class="widget-head">
           <div class="title">Blood Sugar Level</div>
@@ -55,34 +55,32 @@
           <tbody>
             <tr ng-repeat="sugar in sugarData">
               <td>{{ sugar.timestamp }}</td>
-              <td>{{ sugar.reading }}</td>
+              <td>{{ sugar.reading }} mmol/L</td>
             </tr>
           </tbody>
         </table>
       </div>
     </div>
-</div>
-<div class="row">
-  <div class="col-sm-12">
-    <div class="widget widget-fullwidth widget-small">
-      <div class="widget-head">
-        <div class="title">Insulin Intake</div>
+    <div class="col-sm-6">
+      <div class="widget widget-fullwidth widget-small">
+        <div class="widget-head">
+          <div class="title">Insulin Intake</div>
+        </div>
+        <table id="table1" class="table table-striped table-hover table-fw-widget">
+        <div class="col-sm-6"><div id="table2_length" class="dataTables_length"></div></div><div class="col-sm-6"></div>
+          <thead>
+            <tr>
+              <th>Time</th>
+              <th>Number of Units of Insulin</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="ins in insulinIntake">
+              <td>{{ins.timestamp}}</td>
+              <td>{{ins.dose_units}} units</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-      <table id="table1" class="table table-striped table-hover table-fw-widget">
-      <div class="col-sm-6"><div id="table2_length" class="dataTables_length"></div></div><div class="col-sm-6"></div>
-        <thead>
-          <tr>
-            <th>Time</th>
-            <th>Number of Units of Insulin</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr ng-repeat="ins in insulinIntake">
-            <td>{{ins.timestamp}}</td>
-            <td>{{ins.dose_units}}</td>
-          </tr>
-        </tbody>
-      </table>
     </div>
-  </div>
 </div>

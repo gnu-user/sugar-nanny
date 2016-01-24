@@ -19,6 +19,10 @@
         templateUrl: "views/meals.html",
         controller: "DashCtrl"
       })
+      .when('/insulin', {
+        templateUrl: "views/insulin.html",
+        controller: "DashCtrl"
+      })
       .when('/history', {
         templateUrl: "views/history.html",
         controller: "DashCtrl"
@@ -26,10 +30,7 @@
       .when('/foodInformation', {
         templateUrl: "views/foodInfo.html",
         controller: "DashCtrl"
-      })
-
-
-      ;
+      });
 
     $locationProvider.html5Mode(false);
   });
@@ -70,7 +71,7 @@
             console.log('page not found:', data);
           });
 //http://api.sugarnanny.tech/history/insulin/1
-    $http({method: 'GET', url: 'http://api.sugarnanny.tech/stats/insulin/1'})
+    $http({method: 'GET', url: 'http://api.sugarnanny.tech/history/insulin/1'})
           .success(function(data, status, headers, config) {
               $scope.insulinIntake = data.data
               console.log(data.data)
@@ -91,10 +92,9 @@
 
     $scope.doSearch = function() {
       if($scope.search.length > 3){
-
-          $http({method: 'GET', url: 'http://jsonplaceholder.typicode.com/users'}).
+          $http({method: 'GET', url: 'http://api.sugarnanny.tech/food/search/' + $scope.search}).
             success(function(data, status, headers, config) {
-              $scope.searchResults = data
+              $scope.searchResults = data.data;
           }).
             error(function(data, status, headers, config) {
             // called asynchronously if an error occurs
@@ -135,14 +135,13 @@
           });
     }
     $scope.foodSelected = function(rows) {
-
       $http({
         method: 'GET',
-        url: 'http://jsonplaceholder.typicode.com/users'
+        url: 'http://api.sugarnanny.tech/food/calculate/1/' 
+             + rows.food_id + '/1'
       }).
         success(function(data, status, headers, config) {
-          $scope.foodInformation = data;
-          $location.url('/meal');
+          $scope.insulinInfo = data.data;
       }).
         error(function(data, status, headers, config) {
         // called asynchronously if an error occurs
