@@ -4,7 +4,8 @@ from error import InvalidUsage
 from utils import (success_response,
                    ensure_valid_uuid,
                    validate_request,
-                   validate_response)
+                   validate_response,
+                   get_request_data)
 
 food = Blueprint('food', __name__)
 
@@ -32,33 +33,20 @@ def food_search(query):
 def food_retrieve(food_id):
     with get_db_cursor(commit=True) as cur:
         cur.execute('''
-                    SELECT json_agg(summarize_listing(listings))::jsonb AS response
-                    FROM listings
-                    JOIN favorite_listings
-                    USING (listing_id)
-                    WHERE favorite_listings.account_id =
-                      (SELECT account_id
-                       FROM accounts
-                       WHERE account_uuid = %s)
+                    SELECT get_food_item(%s) AS response
                     ''', (food_id,))
         res = cur.fetchone()['response']
     return success_response({'data': {'results': res}})
-
 
 @food.route('/record/<user_id>/<food_id>', methods=['POST'])
 @validate_request()
 @validate_response()
 def food_record(user_id, food_id):
+    req = get_request_data()
+
     with get_db_cursor(commit=True) as cur:
         cur.execute('''
-                    SELECT json_agg(summarize_listing(listings))::jsonb AS response
-                    FROM listings
-                    JOIN favorite_listings
-                    USING (listing_id)
-                    WHERE favorite_listings.account_id =
-                      (SELECT account_id
-                       FROM accounts
-                       WHERE account_uuid = %s)
-                    ''', (user_id,))
+                       SELECT insulin_from_carbs(%s, %s, %s) AS response
+                    ''', (user_id, food_id, req['servings'],))
         res = cur.fetchone()['response']
-    return success_response()
+    return success_response({'data': {'results': int(res)}});

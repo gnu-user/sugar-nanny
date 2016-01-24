@@ -7,6 +7,10 @@
         templateUrl: "views/dashboard.html",
         controller: "DashCtrl"
       })
+      .when('/about', {
+        templateUrl: "views/about.html",
+        controller: "DashCtrl"
+      })
       .when('/readings', {
         templateUrl: "views/readings.html",
         controller: "DashCtrl"
@@ -18,7 +22,8 @@
       .when('/history', {
         templateUrl: "views/history.html",
         controller: "DashCtrl"
-      }).when('/foodInformation', {
+      })
+      .when('/foodInformation', {
         templateUrl: "views/foodInfo.html",
         controller: "DashCtrl"
       })
@@ -30,6 +35,12 @@
   });
 
   app.controller('GlobalCtrl', function($rootScope, $scope, $location, $routeParams, $http){
+    $scope.notifications = [
+      {
+        "txt":"test",
+        "time":"notification time"
+      }
+    ]
     $rootScope.$on( "$routeChangeStart", function(event, next, current) {
       var page = $location.path().substr(1)
       if(page != ""){
@@ -44,46 +55,6 @@
   app.controller('DashCtrl', function($rootScope, $scope, $routeParams, $http){
 
     $scope.page = "Dashboard"
-      ///////////////////
-      /*    History    */
-      /*     Page      */
-      //////////////////
-
-      //Insulin Intake
-      $http(
-        {method: 'GET',
-        url: 'http://jsonplaceholder.typicode.com/users'}
-      ).
-        success(function(data, status, headers, config) {
-          $scope.insulinIntake = data
-      }).
-        error(function(data, status, headers, config) {
-        console.log('page not found:', data);
-      });
-
-    //Blood Sugar Level
-      $http(
-        {method: 'GET',
-         url: 'http://jsonplaceholder.typicode.com/users'}
-       ).
-        success(function(data, status, headers, config) {
-          $scope.bloodSugarLevel = data
-      }).
-        error(function(data, status, headers, config) {
-        console.log('page not found:', data);
-      });
-
-    //Meals History
-      $http(
-        {method: 'GET',
-         url: 'http://jsonplaceholder.typicode.com/users'}
-       ).
-        success(function(data, status, headers, config) {
-          $scope.mealsHistory = data
-      }).
-        error(function(data, status, headers, config) {
-        console.log('page not found:', data);
-      });
 
       // Calories
       // Fat
@@ -118,6 +89,8 @@
           $scope.foodInformation = data;
       }).
         error(function(data, status, headers, config) {
+        // called asynchronously if an error occurs
+        // or server returns response with an error status.
         console.log('page not found:', data);
       });
     };
