@@ -1,22 +1,20 @@
 var App = (function () {
 	'use strict';
 
-	App.chartsMorris = function( ){
-
-		// data stolen from http://howmanyleft.co.uk/vehicle/jaguar_'e'_type
+	App.chartsMorris = function(){
 
 		$.ajax({
 		url: "demo_test.txt",
 		success: function(result){
 			$("#div1").html(result);
 		}
-	});
-	  var tax_data = [
-	       {"Time": "2015", "mmol/L": 400},
-	       {"Time": "2010", "mmol/L": 200},
-	       {"Time": "2005", "mmol/L": 200},
+		});
 
-	  ];
+		var tax_data = [
+	       {"Time": "2016-02-24 15:00", "mmol/L": 1.15},
+	       {"Time": "2016-02-24 15:20", "mmol/L": 5},
+	       {"Time": "2016-02-24 15:30", "mmol/L": 0.8}
+	  	];
 
 	  //Line Chart
 	  function line_chart(){
@@ -28,6 +26,7 @@ var App = (function () {
 		    data: tax_data,
 		    xkey: 'Time',
 		    ykeys: ['mmol/L'],
+		    ymax: 8,
 		    labels: ['Blood Sugar'],
 		    lineColors: [color1],
 		    hideHover: 'auto'
