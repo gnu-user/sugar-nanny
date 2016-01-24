@@ -7,7 +7,7 @@
       <div class="panel-body">
         <form role="form" class="form-horizontal">
           <div class="form-group">
-            <label for="bloodSugarLevel" class="col-sm-3 control-label">Blood Sugar</label>
+            <label for="bloodSugarLevel" class="col-sm-3 control-label">Blood Sugar (in units)</label>
             <div class="col-sm-3">
               <input id="bloodSugarLevel" class="form-control">
             </div>
@@ -38,7 +38,7 @@
       <div class="panel-body">
         <form role="form" class="form-horizontal">
           <div class="form-group">
-            <label for="bloodSugarLevel" class="col-sm-3 control-label">Insulin Units</label>
+            <label for="bloodSugarLevel" class="col-sm-3 control-label">Insulin Units (in mmol/L)</label>
             <div class="col-sm-3">
               <input id="insulinSugarLevel" class="form-control">
             </div>
@@ -64,7 +64,7 @@
 <script>
 var date = Date.now()
 
-for(var i = 0; i < 10; i++){  
+for(var i = 0; i < 10; i++){
 
   date2 = new  Date(date - 900000*i)
   //date = date.getHours()
@@ -73,8 +73,8 @@ for(var i = 0; i < 10; i++){
   if(minutes < 10){
     minutes = "00"
   }
-  $('#insulinLevelTime').append('<option>'+ hours + ':'+ minutes+'</option>'); 
-  $('#bloodSugarLevelTime').append('<option>'+ hours + ':'+ minutes+'</option>'); 
+  $('#insulinLevelTime').append('<option>'+ hours + ':'+ minutes+'</option>');
+  $('#bloodSugarLevelTime').append('<option>'+ hours + ':'+ minutes+'</option>');
 }
 
-</script> 
+</script>
