@@ -98,6 +98,6 @@ if __name__ == '__main__':
     app.register_blueprint(account.account, url_prefix='/account')
     app.register_blueprint(food.food, url_prefix='/food')
     app.register_blueprint(stats.stats, url_prefix='/stats')
-    app.register_blueprint(history.hitory, url_prefix='/history')
+    app.register_blueprint(history.history, url_prefix='/history')
     app.register_blueprint(readings.readings, url_prefix='/readings')
     app.run(host='127.0.0.1', port=port)

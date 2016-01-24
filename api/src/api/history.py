@@ -2,7 +2,6 @@ from app import get_db_cursor
 from flask import Blueprint
 from error import InvalidUsage
 from utils import (success_response,
-                   ensure_valid_uuid,
                    validate_response)
 
 history = Blueprint('history', __name__)

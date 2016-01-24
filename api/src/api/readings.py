@@ -1,10 +1,8 @@
-from app import get_db_cursor, app
+from app import get_db_cursor
 from flask import Blueprint
-from external_jobs import request_phone_confirm
 from error import InvalidUsage
 
 from utils import (success_response,
-                   ensure_valid_uuid,
                    validate_request,
                    validate_response,
                    get_request_data,
