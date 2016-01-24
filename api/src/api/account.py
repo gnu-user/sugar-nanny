@@ -28,7 +28,7 @@ def account_login():
         res = cur.fetchone()
         if res is None:
             raise InvalidUsage('Email not found or password invalid.',
-                               'email_or_password_incalid')
+                               'email_or_password_invalid')
         else:
             user_id = res['user_id']
 
@@ -40,14 +40,11 @@ def account_login():
 def account_email_available(email):
     with get_db_cursor(commit=True) as cur:
         cur.execute('''
-                    SELECT account_email_available(%s) AS available
+                    SELECT email FROM users WHERE email = %s
                     ''', (email,))
         res = cur.fetchone()
         if res is None:
-            raise InvalidUsage('Email format error.', 'email_format_error')
-    resp = success_response({'data': {'available': res['available']}},
-                            code=200 if res['available'] else 400)
-    return resp
+            return success_response({'data': {'available': email}})
 
 
 @account.route('/signup', methods=['POST'])
