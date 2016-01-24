@@ -18,8 +18,8 @@ app.config.from_envvar('APP_SETTINGS')
 url = urlparse(app.config['DATABASE_URL'])
 pool = ThreadedConnectionPool(1, 20,
                               database=url.path[1:],
-                              user=url.username,
-                              password=url.password,
+                              user=app.config['DATABASE_USER'],
+                              password=app.config['DATABASE_PASS'],
                               host=url.hostname,
                               port=url.port)
 
