@@ -9,11 +9,12 @@ points = [(420, 4.3), (480, 4.5), (525, 6.25), (570, 4.5), (600, 4.75), (630, 5)
           (1380, 4.75), (60, 4.4)]
 
 if sys.argv == 4:
-    db_info = "dbname=sugarnanny user={} password={} host={}".format(sys.argv[1],
-                                                                     sys.argv[2],
-                                                                     sys.argv[3])
+    db_info = {"database": "sugarnanny",
+               "user": sys.argv[1],
+               "password": sys.argv[2],
+               "host": sys.argv[3]}
 else:
-    db_info = "dbname=sugarnanny"
+    db_info = {"database": "sugarnanny"}
 
 
 def gen_new_set(p):
@@ -54,7 +55,7 @@ for i in range(1, 6):
         p[0] = (p[0][0], r.uniform(3.33, last_point[1]))
         last_point = p[len(p) - 1]
 
-        with pg.connect(db_info) as conn:
+        with pg.connect(**db_info) as conn:
             for point in p:
                 info = (i, str(date) + " " + str(get_time_from_minutes(point[0])) + ":00",
                         "{:.2f}".format(point[1]))
@@ -64,5 +65,4 @@ for i in range(1, 6):
                             INSERT INTO readings (account_id, reading_timestamp, reading)
                             VALUES (%s, %s, %s)
                            ''', info)
-
         date += one_day
