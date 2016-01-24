@@ -98,3 +98,41 @@ for i in range(1, 6):
                            ''', entry)
         date += one_day
 
+for i in range(1, 6):
+    today = dt.date.today()
+    date = today - dt.timedelta(days=31)
+
+    one_day = dt.timedelta(days=1)
+
+    with pg.connect(**db_info) as conn:
+        curr = conn.cursor()
+        tdd = curr.execute('SELECT insulin_tdd FROM accounts WHERE account_id=%s', (i,))
+
+        insulin_tdd = curr.fetchall()[0][0];
+
+        d1 = r.randrange((int)(insulin_tdd / 4), (int)(insulin_tdd / 3))
+        d2 = r.randrange((int)(insulin_tdd / 4), (int)(insulin_tdd / 3))
+        d3 = insulin_tdd - d1 - d2
+
+        curr.close()
+
+        while date != today:
+
+            entries = []
+
+            breakfast = dt.time(r.randrange(7,8), r.randrange(0,59), 0)
+            entries.append( (i, str(date) + " " + str(breakfast), str(d1)) );
+ 
+            lunch = dt.time(r.randrange(12,13), r.randrange(0,59), 0)
+            entries.append( (i, str(date) + " " + str(lunch), str(d2)) );
+
+            dinner = dt.time(r.randrange(17,18), r.randrange(0,59), 0)
+            entries.append( (i, str(date) + " " + str(dinner), str(d3)) );
+
+            for entry in entries:
+                with conn.cursor() as cur:
+                    cur.execute('''
+                            INSERT INTO doses (account_id, dose_timestamp, dose_units)
+                            VALUES (%s, %s, %s)
+                           ''', entry)
+            date += one_day
