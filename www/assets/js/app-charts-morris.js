@@ -75,7 +75,7 @@ var App = (function () {
 			console.log(result.data)
 
 
-		var color1 = tinycolor("#3D3C3C").lighten( 34 ).toString();
+		var color1 = tinycolor("#555555").lighten( 34 ).toString();
 
 	  		Morris.Bar({
 			  element: 'bar-chart-2',
