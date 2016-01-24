@@ -18,7 +18,13 @@
       .when('/history', {
         templateUrl: "views/history.html",
         controller: "DashCtrl"
-      });
+      }).when('/foodInformation', {
+        templateUrl: "views/foodinfo.html",
+        controller: "DashCtrl"
+      })
+
+
+      ;
 
     $locationProvider.html5Mode(false);
   });
@@ -43,9 +49,6 @@
 
       $http({method: 'GET', url: 'http://jsonplaceholder.typicode.com/users'}).
         success(function(data, status, headers, config) {
-          //$scope.searchResults = data.result;
-          console.log("GET json")
-          console.log(data)
           $scope.searchResults = data
       }).
         error(function(data, status, headers, config) {
@@ -59,9 +62,7 @@
 
       $http({method: 'GET', url: 'http://jsonplaceholder.typicode.com/users'}).
         success(function(data, status, headers, config) {
-          //$scope.searchResults = data.result;
-          console.log("GET json")
-          console.log(data)
+
       }).
         error(function(data, status, headers, config) {
         // called asynchronously if an error occurs
