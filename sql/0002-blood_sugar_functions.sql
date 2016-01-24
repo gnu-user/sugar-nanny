@@ -20,7 +20,7 @@ AS
 $$
 	--How much insulin to use to counter-act X grams of carbs:
 	UPDATE accounts
-        SET basal_correction_factor = 1500.0 / insulin_TDD
+        SET basal_correction_factor = 1500.0 / insulin_tdd
     		WHERE account_id = _account_id;
 $$;
 CREATE FUNCTION set_bolus_correction_factor(_account_id INTEGER)
@@ -30,7 +30,7 @@ AS
 $$
 	--How much insulin to use to counter-act X grams of carbs:
 	UPDATE accounts
-        SET bolus_correction_factor = 1800.0 / insulin_TDD
+        SET bolus_correction_factor = 1800.0 / insulin_tdd
     		WHERE account_id = _account_id;
 $$;
 CREATE FUNCTION set_gram_(_account_id INTEGER)
@@ -40,7 +40,7 @@ AS
 $$
 	--How much insulin to use to counter-act X grams of carbs:
 	UPDATE accounts
-        SET grams_carb_per_unit = 450.0 / a.insulin_TDD
+        SET grams_carb_per_unit = 450.0 / insulin_tdd
     		WHERE account_id = _account_id;
 $$;
 
