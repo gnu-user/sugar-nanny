@@ -4,6 +4,7 @@ LANGUAGE SQL
 AS
 $$
     SELECT json_build_object(
+          'food_id', _food_id,
           'product_name', f.product_name,
           'carbs', COALESCE(f.carbohydrates_100g, 0.0),
           'sugar', COALESCE(f.sugars_100g, 0.0),
