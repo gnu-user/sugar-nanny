@@ -1,0 +1,29 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+
+    "type": "object",
+
+    "properties":
+    {
+        "success":   { "type": "boolean" },
+        "code":      { "type": "integer" },
+        "status":    { "type": "string" },
+        "data":
+        {
+            "type": "array",
+            "items":
+            [
+                {
+                    "type": "object",
+                    "properties":
+                    {
+                        "timestamp": { "type": "integer" },
+                        "dose_units":   { "type": "number" }
+                    }
+                }
+            ]
+        },
+        "errors":    { "type": "array" }
+    },
+    "required": ["success", "code", "status"]
+}
