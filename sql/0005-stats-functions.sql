@@ -25,6 +25,7 @@ $$
 SELECT 
       json_build_object('timestamp', EXTRACT(EPOCH FROM $1.food_timestamp),
                         'servings', $1.food_servings,
+                        'product_name', product_name,
                         'calories', round(energy_100g / 4.184, 2),
                         'fat', fat_100g,
                         'cholesterol', cholesterol_100g,
