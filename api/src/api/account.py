@@ -39,11 +39,13 @@ def account_login():
 def account_email_available(email):
     with get_db_cursor(commit=True) as cur:
         cur.execute('''
-                    SELECT email FROM users WHERE email = %s
+                    SELECT email FROM accounts WHERE email = lower(%s)
                     ''', (email,))
         res = cur.fetchone()
-        if res is None:
-            return success_response({'data': {'available': email}})
+        if res is not None:
+            raise InvalidUsage('Email not available.',
+                               'email_not_available')
+    return success_response({'data': {'available': email}})
 
 
 @account.route('/signup', methods=['POST'])
