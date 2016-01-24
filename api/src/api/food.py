@@ -29,7 +29,7 @@ def food_retrieve(food_id):
                     SELECT get_food_item(%s) AS response
                     ''', (food_id,))
         res = cur.fetchone()['response']
-    return success_response({'data': {'results': res}})
+    return success_response({'data': res})
 
 
 @food.route('/record/<user_id>/<food_id>', methods=['POST'])

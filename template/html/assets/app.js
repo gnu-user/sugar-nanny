@@ -62,7 +62,7 @@
      )
           .success(function(data, status, headers, config) {
               $scope.sugarData = data.data;
-              console.log($scope.sugarData);
+
           }).
             error(function(data, status, headers, config) {
             // called asynchronously if an error occurs
@@ -70,23 +70,21 @@
             console.log('page not found:', data);
           });
 
-    $http({method: 'GET', url: 'http://api.sugarnanny.tech/stats/meals/1'})
+    $http({method: 'GET', url: 'http://api.sugarnanny.tech/stats/insulin/1'})
+
           .success(function(data, status, headers, config) {
-              $scope.mealsHistory = data
+              $scope.insulinIntake = data.data
           }).
             error(function(data, status, headers, config) {
-            // called asynchronously if an error occurs
-            // or server returns response with an error status.
             console.log('page not found:', data);
           });
 
     $http({method: 'GET', url: 'http://api.sugarnanny.tech/stats/meals/1'})
           .success(function(data, status, headers, config) {
-              $scope.insulinIntake = data
+              $scope.mealsHistory = data.data
+
           }).
             error(function(data, status, headers, config) {
-            // called asynchronously if an error occurs
-            // or server returns response with an error status.
             console.log('page not found:', data);
           });
 
