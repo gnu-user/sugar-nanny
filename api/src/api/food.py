@@ -32,20 +32,24 @@ def food_retrieve(food_id):
     return success_response({'data': res})
 
 
-@food.route('/record/<user_id>/<food_id>', methods=['POST'])
-@validate_request()
+@food.route('/calculate/<account_id>/<food_id>/<servings>', methods=['GET'])
 @validate_response()
-def food_record(user_id, food_id):
+def food_calculate(account_id, food_id, servings):
     with get_db_cursor(commit=True) as cur:
         cur.execute('''
-                    SELECT json_agg(summarize_listing(listings))::jsonb AS response
-                    FROM listings
-                    JOIN favorite_listings
-                    USING (listing_id)
-                    WHERE favorite_listings.account_id =
-                      (SELECT account_id
-                       FROM accounts
-                       WHERE account_uuid = %s)
-                    ''', (user_id,))
+                    SELECT round(food_insulin_units_required(%s, %s, %s), 1)
+                    AS response
+                    ''', (account_id, food_id, servings))
         res = cur.fetchone()['response']
+    return success_response({'data': {'units': res}})
+
+
+@food.route('/record/<account_id>/<food_id>/<servings>', methods=['GET'])
+@validate_response()
+def food_record(account_id, food_id, servings):
+    with get_db_cursor(commit=True) as cur:
+        cur.execute('''
+                    INSERT INTO food_history(account_id, food_id, food_servings)
+                    VALUES (%s, %s, %s)
+                    ''', (account_id, food_id, servings))
     return success_response()
