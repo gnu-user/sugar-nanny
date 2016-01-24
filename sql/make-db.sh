@@ -4,16 +4,15 @@ HOST=$3
 
 if [[ -n "${USER}" && -n "${PASS}" && -n "${HOST}" ]]
 then
-    export PGPASSWORD=sugarrush987
-    dropdb -U${USER} --password ${PASS} -h ${HOST} sugarnanny
-    createdb -U${USER} --password ${PASS} -h ${HOST} sugarnanny
-    pg_restore -U${USER} --password ${PASS} -h ${HOST} -d sugarnanny openfoodfacts.dump
-    psql -U${USER} --password ${PASS} -h ${HOST} sugarnanny < 0001-schema.sql
-    psql -U${USER} --password ${PASS} -h ${HOST} sugarnanny < 0002-blood_sugar_functions.sql
-    psql -U${USER} --password ${PASS} -h ${HOST} sugarnanny < 0003-account-functions.sql
-    psql -U${USER} --password ${PASS} -h ${HOST} sugarnanny < 0004-food_functions.sql
-    psql -U${USER} --password ${PASS} -h ${HOST} sugarnanny < 0005-stats-functions.sql
-    psql -U${USER} --password ${PASS} -h ${HOST} sugarnanny < 9999-data.sql
+    PGPASSWORD=${PASS} dropdb -U${USER} --password ${PASS} -h ${HOST} sugarnanny
+    PGPASSWORD=${PASS} createdb -U${USER} --password ${PASS} -h ${HOST} sugarnanny
+    PGPASSWORD=${PASS} pg_restore -U${USER} --password ${PASS} -h ${HOST} -d sugarnanny openfoodfacts.dump
+    PGPASSWORD=${PASS} psql -U${USER} --password ${PASS} -h ${HOST} sugarnanny < 0001-schema.sql
+    PGPASSWORD=${PASS} psql -U${USER} --password ${PASS} -h ${HOST} sugarnanny < 0002-blood_sugar_functions.sql
+    PGPASSWORD=${PASS} psql -U${USER} --password ${PASS} -h ${HOST} sugarnanny < 0003-account-functions.sql
+    PGPASSWORD=${PASS} psql -U${USER} --password ${PASS} -h ${HOST} sugarnanny < 0004-food_functions.sql
+    PGPASSWORD=${PASS} psql -U${USER} --password ${PASS} -h ${HOST} sugarnanny < 0005-stats-functions.sql
+    PGPASSWORD=${PASS} psql -U${USER} --password ${PASS} -h ${HOST} sugarnanny < 9999-data.sql
     python2 make-readings.py ${USER} ${PASS} ${HOST}
 else
     dropdb -U${USER} --password ${PASS} -h ${HOST} sugarnanny
