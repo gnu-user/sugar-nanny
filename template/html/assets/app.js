@@ -61,7 +61,8 @@
        url: 'http://api.sugarnanny.tech/stats/blood_sugar/1'}
      )
           .success(function(data, status, headers, config) {
-              $scope.sugarData = data
+              $scope.sugarData = data.data;
+              console.log($scope.sugarData);
           }).
             error(function(data, status, headers, config) {
             // called asynchronously if an error occurs
