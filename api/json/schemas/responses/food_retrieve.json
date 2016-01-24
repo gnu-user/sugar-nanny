@@ -13,24 +13,25 @@
             "type": "object",
             "properties":
             {
-                "product_name": { "type": "string" },
-                "carb":     { "type": "number" },
-                "sugar":    { "type": "number" },
-                "fructose": { "type": "number" },
-                "sucrose":  { "type": "number" },
-                "glucose":  { "type": "number" },
-                "fiber":    { "type": "number" },
-                "sodium":   { "type": "number" },
-                "fat":      { "type": "number" },
-                "protein":  { "type": "number" },
-                "starch":   { "type": "number" },
-
-                "img_url":  { "type": "string" },
-                "img_small_url":  { "type": "string" },
-
-                "calories":   { "type": "number" }
+                "product_name":  { "type": "string" },
+                "carbs":         { "type": "number" },
+                "sugar":         { "type": "number" },
+                "fructose":      { "type": "number" },
+                "sucrose":       { "type": "number" },
+                "glucose":       { "type": "number" },
+                "fibre":         { "type": "number" },
+                "sodium":        { "type": "number" },
+                "fat":           { "type": "number" },
+                "protein":       { "type": "number" },
+                "calories":      { "type": "number" },
+                "starch":        { "type": "number" },
+                "img_url":       { "type": "string" },
+                "img_small_url": { "type": "string" }
             },
-            "required": ["product_name", "carb", "sugar", "fructose", "sucrose", "glucose", "fiber", "sodium", "fat", "protein", "calories", "starch", "img_url", "img_small_url"]
+            "required": ["product_name", "carbs", "sugar", "fructose", 
+                         "sucrose", "glucose", "fibre", "sodium", 
+                         "fat", "protein", "calories", "starch", 
+                         "img_url", "img_small_url"]
         }
     }
 }

@@ -5,7 +5,26 @@
 
     "properties":
     {
-        "search_results":    { "type": "number" }
+        "success":   { "type": "boolean" },
+        "code":      { "type": "integer" },
+        "status":    { "type": "string" },
+        "data":
+        {
+            "type": "array",
+            "items":
+            [
+                {
+                    "type": "object",
+                    "properties":
+                    {
+                        "food_id":        { "type": "integer" },
+                        "product_name":   { "type": "string" }
+                    },
+                    "required": ["food_id", "product_name"]
+                }
+            ]
+        },
+        "errors":    { "type": "array" }
     },
-    "required": ["search_results"]
+    "required": ["success", "code", "status"]
 }

@@ -3,7 +3,7 @@ RETURNS JSONB
 LANGUAGE SQL
 AS
 $$
-SELECT json_build_object('timestamp', EXTRACT(EPOCH FROM $1.reading_timestamp),
+SELECT json_build_object('timestamp', $1.reading_timestamp::TIMESTAMP WITHOUT TIME ZONE,
                          'reading', $1.reading)::JSONB;
 $$;
 
@@ -13,7 +13,7 @@ RETURNS JSONB
 LANGUAGE SQL
 AS
 $$
-SELECT json_build_object('timestamp', EXTRACT(EPOCH FROM $1.dose_timestamp),
+SELECT json_build_object('timestamp', $1.dose_timestamp::TIMESTAMP WITHOUT TIME ZONE,
                          'dose_units', $1.dose_units)::JSONB;
 $$;
 
@@ -23,7 +23,7 @@ LANGUAGE SQL
 AS
 $$
 SELECT 
-      json_build_object('timestamp', EXTRACT(EPOCH FROM $1.food_timestamp),
+      json_build_object('timestamp', $1.food_timestamp::TIMESTAMP WITHOUT TIME ZONE,
                         'servings', $1.food_servings,
                         'calories', round(energy_100g / 4.184, 2),
                         'fat', fat_100g,
