@@ -56,20 +56,6 @@ $$
 			AND f.food_id = _food_id;
 $$;
 
-
--- TODO make comparison case-insensitive
-CREATE FUNCTION food_insulin_units_required(_account_id INTEGER, _food_id INTEGER, _servings NUMERIC)
-RETURNS NUMERIC
-LANGUAGE SQL
-AS
-$$
-	--How much insulin to use to counter-act X grams of carbs:
-	SELECT (f.carbohydrates_100g / a.grams_carb_per_unit) * _servings
-		FROM foods AS f, accounts AS a
-		WHERE a.account_id = _account_id
-			AND f.food_id = _food_id;
-$$;
-
 CREATE FUNCTION account_sugar_to_target_basal(_account_id INTEGER, _actual_bs NUMERIC, _target_bs NUMERIC)
 RETURNS NUMERIC
 LANGUAGE SQL
