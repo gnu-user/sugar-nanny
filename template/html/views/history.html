@@ -11,9 +11,9 @@
       <thead>
         <tr>
           <th> Time </th>
-          <th> Calories </th>
+          <th> Name </th>
           <th> Fat </th>
-          <th> Cholesterol </th>
+          <th> Calories </th>
           <th> Sodium </th>
           <th> Carbohydrates </th>
           <th> Fibre </th>
@@ -25,9 +25,9 @@
         <tbody>
             <tr ng-repeat="meals in mealsHistory">
               <td>{{ meals.timestamp }}</td>
-              <td>{{ meals.calories }}</td>
+              <td>{{ meals.name }}</td>
               <td>{{ meals.fat }}</td>
-              <td>{{ meals.cholesterol }}</td>
+              <td>{{ meals.calories }}</td>
               <td>{{ meals.sodium }}</td>
               <td>{{ meals.carbs }}</td>
               <td>{{ meals.fibre }}</td>
@@ -81,8 +81,8 @@
         </thead>
         <tbody>
           <tr ng-repeat="ins in insulinIntake">
-            <td>{{ins.id}}</td>
-            <td>{{ins.name}}</td>
+            <td>{{ins.timestamp}}</td>
+            <td>{{ins.dose_units}}</td>
           </tr>
         </tbody>
       </table>
