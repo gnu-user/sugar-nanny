@@ -1,5 +1,3 @@
-CREATE EXTENSION "citext";
-
 CREATE TABLE accounts
 (
     account_id          SERIAL      NOT NULL PRIMARY KEY,
@@ -9,7 +7,7 @@ CREATE TABLE accounts
     weight              NUMERIC     NOT NULL,
     sex                 CHAR(1)     NOT NULL,
     dob                 DATE        NOT NULL,
-    email               CITEXT      NOT NULL UNIQUE,
+    email               TEXT        NOT NULL UNIQUE,
     password            TEXT        NOT NULL,
     -- Diabetes specifics
     diabetes_type       INTEGER     NOT NULL,
