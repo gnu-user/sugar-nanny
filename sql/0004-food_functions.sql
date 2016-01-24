@@ -3,13 +3,14 @@ RETURNS JSONB
 LANGUAGE SQL
 AS
 $$
-    SELECT json_build_object('product_name', f.product_name,
-          'carb', COALESCE(f.carbohydrates_100g, 0.0),
+    SELECT json_build_object(
+          'product_name', f.product_name,
+          'carbs', COALESCE(f.carbohydrates_100g, 0.0),
           'sugar', COALESCE(f.sugars_100g, 0.0),
           'fructose', COALESCE(f.fructose_100g, 0.0),
           'sucrose', COALESCE(f.sucrose_100g, 0.0),
           'glucose', COALESCE(f.glucose_100g, 0.0),
-          'fiber', COALESCE(f.fiber_100g, 0.0),
+          'fibre', COALESCE(f.fiber_100g, 0.0),
           'sodium', COALESCE(f.sodium_100g, 0.0),
           'protein', COALESCE(f.proteins_100g, 0.0),
           'starch', COALESCE(f.starch_100g, 0.0),
@@ -21,14 +22,15 @@ $$
       WHERE food_id = _food_id;
 $$;
 
-
-CREATE FUNCTION food_search(_query VARCHAR)
+CREATE FUNCTION food_search(_query TEXT, _results INTEGER DEFAULT 10)
 RETURNS JSONB
 LANGUAGE SQL
 AS
 $$
-    SELECT json_agg(json_build_object( (SELECT food_id, product_name
-                                FROM foods
-                                WHERE product_name LIKE '%' || lower(_query) || '%') )
-                   )::JSONB AS response
+    SELECT json_agg(json_build_object('food_id', food_auto.food_id,
+                                      'product_name', food_auto.product_name))::JSONB
+    FROM
+    (SELECT * FROM foods
+     WHERE product_name LIKE '%' || lower(_query) || '%'
+     ORDER BY food_id LIMIT _results) as food_auto;
 $$;
