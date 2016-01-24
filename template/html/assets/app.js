@@ -109,9 +109,24 @@
 
       $http(
       {method: 'GET',
-       url: 'http://api.sugarnanny.tech/readings/blood_sugar/1/'+insulin+'/'+0})
+       url: 'http://api.sugarnanny.tech/readings/insulin/1/'+insulin.units})
           .success(function(data, status, headers, config) {
               console.log(insulin);
+          }).
+            error(function(data, status, headers, config) {
+            // called asynchronously if an error occurs
+            // or server returns response with an error status.
+            console.log('page not found:', data);
+          });
+    }
+    $scope.sendBloodSugar = function(bloodsugar) {
+      console.log(bloodsugar)
+
+      $http(
+      {method: 'GET',
+       url: 'http://api.sugarnanny.tech/readings/blood_sugar/1/'+bloodsugar.units})
+          .success(function(data, status, headers, config) {
+              console.log(bloodsugar);
           }).
             error(function(data, status, headers, config) {
             // called asynchronously if an error occurs

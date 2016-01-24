@@ -9,7 +9,7 @@
           <div class="form-group">
             <label for="bloodSugarLevel" class="col-sm-3 control-label">Blood Sugar      (in mmol/L)</label>
             <div class="col-sm-3">
-              <input id="bloodSugarLevel" class="form-control">
+              <input id="bloodSugarLevel" class="form-control" ng-model="bloodSugar.units">
             </div>
             <label for="bloodSugarLevelTime" class="col-sm-3 control-label">Time recorded</label>
             <div class="col-sm-3">
@@ -21,7 +21,7 @@
           <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
               <div class="spacer text-right">
-                <button type="submit" class="btn btn-space btn-primary">Submit</button>
+                <button type="submit" class="btn btn-space btn-primary" ng-click="sendBloodSugar(bloodSugar)">Submit</button>
               </div>
             </div>
           </div>
