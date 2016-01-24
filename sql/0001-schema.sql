@@ -17,9 +17,9 @@ CREATE TABLE accounts
     background_dose     INTEGER     NOT NULL,
     pre_meal_target	    NUMERIC     NOT NULL,
     post_meal_target	NUMERIC     NOT NULL,
-    basal_corr_factor   NUMERIC     NOT NULL,
-    bolus_corr_factor   NUMERIC     NOT NULL,
-    grams_carb_per_unit NUMERIC     NOT NULL
+    basal_corr_factor   NUMERIC     DEFAULT NULL,
+    bolus_corr_factor   NUMERIC     DEFAULT NULL,
+    grams_carb_per_unit NUMERIC     DEFAULT NULL
 );
 
 CREATE UNIQUE INDEX ON accounts(email);
