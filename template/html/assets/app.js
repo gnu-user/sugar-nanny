@@ -45,23 +45,20 @@
 
     $scope.page = "Dashboard"
 
-    $scope.$watch('search', function() {
-
+    $scope.doSearch = function() {
       if($scope.search.length > 3){
 
-      $http({method: 'GET', url: 'http://jsonplaceholder.typicode.com/users'}).
-        success(function(data, status, headers, config) {
-          $scope.searchResults = data
-      }).
-        error(function(data, status, headers, config) {
-        // called asynchronously if an error occurs
-        // or server returns response with an error status.
-        console.log('page not found:', data);
-      });
-    }
-
-
-    });
+          $http({method: 'GET', url: 'http://jsonplaceholder.typicode.com/users'}).
+            success(function(data, status, headers, config) {
+              $scope.searchResults = data
+          }).
+            error(function(data, status, headers, config) {
+            // called asynchronously if an error occurs
+            // or server returns response with an error status.
+            console.log('page not found:', data);
+          });
+      };
+    };
 
     $scope.foodSelected = function(rows) {
 
