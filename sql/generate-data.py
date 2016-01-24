@@ -8,14 +8,13 @@ points = [(420, 4.3), (480, 4.5), (525, 6.25), (570, 4.5), (600, 4.75), (630, 5)
           (1125, 6.25), (1155, 5.25), (1200, 5.75), (1260, 5.5), (1320, 5.25),
           (1380, 4.75), (60, 4.4)]
 
-if sys.argv == 4:
+if len(sys.argv) == 4:
     db_info = {"database": "sugarnanny",
                "user": sys.argv[1],
                "password": sys.argv[2],
                "host": sys.argv[3]}
 else:
     db_info = {"database": "sugarnanny"}
-
 
 def gen_new_set(p):
     shifted_points = [(x + r.randrange(-15, 15), y + r.uniform(-0.4, 0.4)) for (x, y) in p]
