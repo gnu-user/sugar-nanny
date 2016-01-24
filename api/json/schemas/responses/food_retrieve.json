@@ -13,6 +13,7 @@
             "type": "object",
             "properties":
             {
+                "food_id":       { "type": "integer"},
                 "product_name":  { "type": "string" },
                 "carbs":         { "type": "number" },
                 "sugar":         { "type": "number" },
@@ -28,7 +29,7 @@
                 "img_url":       { "type": "string" },
                 "img_small_url": { "type": "string" }
             },
-            "required": ["product_name", "carbs", "sugar", "fructose", 
+            "required": ["food_id", "product_name", "carbs", "sugar", "fructose", 
                          "sucrose", "glucose", "fibre", "sodium", 
                          "fat", "protein", "calories", "starch", 
                          "img_url", "img_small_url"]
