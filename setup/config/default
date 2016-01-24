@@ -4,7 +4,7 @@
 
 server {
     listen 80 default_server;
-    server_name sugarnanny.tech
+    server_name sugarnanny.tech www.sugarnanny.tech;
 
     access_log /var/log/nginx/access.log;
     error_log /var/log/nginx/error.log;
@@ -19,6 +19,8 @@ server {
             # Uncomment to enable naxsi on this location
             # include /etc/nginx/naxsi.rules
     }
+
+    error_page 404 /404.html;
 }
 
 server {
