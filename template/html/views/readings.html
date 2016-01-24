@@ -61,17 +61,13 @@
   </div>
 </div>
 <script>
-var date = Date.now()
+var date = moment()
 
   for(var i = 0; i < 10; i++){  
-    date2 = new  Date(date - (900000*i) )
+    date2 = date.subtract(5*i, 'minutes')
+    date2 = date2.format('h:mm a');
     //date = date.getHours()
-    hours = date2.getHours()
-    minutes = date2.getMinutes()
-    if(minutes < 10){
-      minutes = "00"
-  }
-  $('#insulinLevelTime').append('<option>'+ hours + ':'+ minutes+'</option>');
-  $('#bloodSugarLevelTime').append('<option>'+ hours + ':'+ minutes+'</option>');
+  $('#insulinLevelTime').append('<option>'+ date2+'</option>');
+  $('#bloodSugarLevelTime').append('<option>'+ date2+'</option>');
 }
 </script>
