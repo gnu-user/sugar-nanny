@@ -15,14 +15,7 @@ food = Blueprint('food', __name__)
 def food_search(query):
     with get_db_cursor(commit=True) as cur:
         cur.execute('''
-                    SELECT json_agg(summarize_listing(listings))::jsonb AS response
-                    FROM listings
-                    JOIN favorite_listings
-                    USING (listing_id)
-                    WHERE favorite_listings.account_id =
-                      (SELECT account_id
-                       FROM accounts
-                       WHERE account_uuid = %s)
+                    SELECT search_food(%s) AS response
                     ''', (query,))
         res = cur.fetchone()['response']
     return success_response({'data': {'results': res}})

@@ -15,7 +15,7 @@ then
     PGPASSWORD=${PASS} psql -U${USER} -h ${HOST} sugarnanny < 9999-data.sql
     python2 generate-data.py ${USER} ${PASS} ${HOST}
 else
-    dropdb -U${USER} --password ${PASS} -h ${HOST} sugarnanny
+    dropdb sugarnanny
     createdb sugarnanny
     pg_restore -d sugarnanny openfoodfacts.dump
     psql sugarnanny < 0001-schema.sql

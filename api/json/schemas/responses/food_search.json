@@ -1,0 +1,11 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+
+    "type": "object",
+
+    "properties":
+    {
+        "search_results":    { "type": "number" }
+    },
+    "required": ["search_results"]
+}
