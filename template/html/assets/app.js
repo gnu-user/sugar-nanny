@@ -55,7 +55,7 @@
       });
     });
 
-    $scope.itemInfo = function(rows) {
+    $scope.foodSelected = function(rows) {
 
       $http({method: 'GET', url: 'http://jsonplaceholder.typicode.com/users'}).
         success(function(data, status, headers, config) {
@@ -68,6 +68,8 @@
         // or server returns response with an error status.
         console.log('page not found:', data);
       });
+
+      alert("hi");
 
     };
 
