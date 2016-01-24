@@ -11,6 +11,8 @@ then
     psql -U${USER} --password ${PASS} -h ${HOST} sugarnanny < 0001-schema.sql
     psql -U${USER} --password ${PASS} -h ${HOST} sugarnanny < 0002-blood_sugar_functions.sql
     psql -U${USER} --password ${PASS} -h ${HOST} sugarnanny < 0003-account-functions.sql
+    psql -U${USER} --password ${PASS} -h ${HOST} sugarnanny < 0004-food_functions.sql
+    psql -U${USER} --password ${PASS} -h ${HOST} sugarnanny < 0005-stats-functions.sql
     psql -U${USER} --password ${PASS} -h ${HOST} sugarnanny < 9999-data.sql
     python2 make-readings.py ${USER} ${PASS} ${HOST}
 else
@@ -20,6 +22,8 @@ else
     psql sugarnanny < 0001-schema.sql
     psql sugarnanny < 0002-blood_sugar_functions.sql
     psql sugarnanny < 0003-account-functions.sql
+    psql sugarnanny < 0004-food_functions.sql
+    psql sugarnanny < 0005-stats-functions.sql
     psql sugarnanny < 9999-data.sql
     python2 make-readings.py
 fi
