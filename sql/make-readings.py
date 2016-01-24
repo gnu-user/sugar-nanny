@@ -50,7 +50,7 @@ for i in range(1, 6):
             for point in p:
                 info = (i, str(date) + " " + str(get_time_from_minutes(point[0])) + ":00",
                 		"{:.2f}".format(point[1]))
-                print info
+
                 with conn.cursor() as cur:
                     cur.execute('''
                             INSERT INTO readings (account_id, reading_timestamp, reading)

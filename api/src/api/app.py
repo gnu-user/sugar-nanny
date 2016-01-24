@@ -7,8 +7,6 @@ import psycopg2
 import psycopg2.extras
 import traceback
 from psycopg2.pool import ThreadedConnectionPool
-import pika
-import pika_pool
 from exceptions import Exception
 from error import AuthError, InvalidUsage
 from utils import error_response, LOGGER
@@ -20,20 +18,8 @@ app.config.from_envvar('APP_SETTINGS')
 url = urlparse(app.config['DATABASE_URL'])
 pool = ThreadedConnectionPool(1, 20,
                               database=url.path[1:],
-                              user=url.username,
-                              password=url.password,
                               host=url.hostname,
                               port=url.port)
-
-pika_pool = pika_pool.QueuedPool(
-    create=lambda: pika.BlockingConnection(
-        parameters=pika.URLParameters('amqp://localhost')),
-    max_size=10,
-    max_overflow=10,
-    timeout=10,
-    recycle=3600,
-    stale=45,
-)
 
 
 @app.errorhandler(Exception)
@@ -98,6 +84,6 @@ if __name__ == '__main__':
     app.register_blueprint(account.account, url_prefix='/account')
     app.register_blueprint(food.food, url_prefix='/food')
     app.register_blueprint(stats.stats, url_prefix='/stats')
-    app.register_blueprint(history.hitory, url_prefix='/history')
+    app.register_blueprint(history.history, url_prefix='/history')
     app.register_blueprint(readings.readings, url_prefix='/readings')
     app.run(host='127.0.0.1', port=port)

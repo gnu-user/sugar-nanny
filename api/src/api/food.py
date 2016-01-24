@@ -1,9 +1,9 @@
 from app import get_db_cursor
-from flask import Blueprint, g
-from auth import requires_auth
+from flask import Blueprint
 from error import InvalidUsage
 from utils import (success_response,
                    ensure_valid_uuid,
+                   validate_request,
                    validate_response)
 
 food = Blueprint('food', __name__)
@@ -22,14 +22,14 @@ def food_search(query):
                       (SELECT account_id
                        FROM accounts
                        WHERE account_uuid = %s)
-                    ''', (my_account_uuid,))
+                    ''', (query,))
         res = cur.fetchone()['response']
     return success_response({'data': {'results': res}})
 
 
 @food.route('/retrieve/<food_id>', methods=['GET'])
 @validate_response()
-def food_search(food_id):
+def food_retrieve(food_id):
     with get_db_cursor(commit=True) as cur:
         cur.execute('''
                     SELECT json_agg(summarize_listing(listings))::jsonb AS response
@@ -40,7 +40,7 @@ def food_search(food_id):
                       (SELECT account_id
                        FROM accounts
                        WHERE account_uuid = %s)
-                    ''', (my_account_uuid,))
+                    ''', (food_id,))
         res = cur.fetchone()['response']
     return success_response({'data': {'results': res}})
 
@@ -48,7 +48,7 @@ def food_search(food_id):
 @food.route('/record/<user_id>/<food_id>', methods=['POST'])
 @validate_request()
 @validate_response()
-def food_search(user_id, food_id):
+def food_record(user_id, food_id):
     with get_db_cursor(commit=True) as cur:
         cur.execute('''
                     SELECT json_agg(summarize_listing(listings))::jsonb AS response
@@ -59,6 +59,6 @@ def food_search(user_id, food_id):
                       (SELECT account_id
                        FROM accounts
                        WHERE account_uuid = %s)
-                    ''', (my_account_uuid,))
+                    ''', (user_id,))
         res = cur.fetchone()['response']
     return success_response()
