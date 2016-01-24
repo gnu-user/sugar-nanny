@@ -37,46 +37,58 @@ var App = (function () {
 
 	  //Bar chart
 	  function bar_chart(){
-			var color1 = tinycolor( App.color.alt3 ).lighten( 10 ).toString();
+	  	var carbs_data = []
+	  	$.ajax({
+		url: "http://api.sugarnanny.tech/stats/meals/1",
+		success: function(result){
+			
+			carbs_data = result.data
+			console.log("carbs:")
+			console.log(result.data)
 
-	  	Morris.Bar({
+
+		var color1 = tinycolor( App.color.alt3 ).lighten( 10 ).toString();
+
+	  		Morris.Bar({
 			  element: 'bar-chart',
-			  data: [
-			    {Time: '09:00', Carbohydrates: 136, test:1},
-			    {Time: '12:00', Carbohydrates: 137, test:1},
-			    {Time: '3:00', Carbohydrates: 275, test:2},
-			    {Time: '6:00', Carbohydrates: 380, test:1},
-			    {Time: '9:00', Carbohydrates: 655, test:3},
-			    {Time: '12:00', Carbohydrates: 1571, test:1}
-			  ],
-			  xkey: 'Time',
-			  ykeys: ['Carbohydrates'],
-			  labels: ['Carbohydrates','time'],
+			  data: carbs_data,
+			  xkey: 'timestamp',
+			  ykeys: ['carbs'],
+			  labels: ['Carbohydrates','Time'],
 			  barColors: [color1],
 			  barRatio: 0.4,
 			  hideHover: 'auto'
 			});
+		}
+		});
+
 	  }
 		function bar_chart_2(){
-			var color1 = tinycolor("#C1EF65").lighten( 10 ).toString();
 
-			Morris.Bar({
-				element: 'bar-chart-2',
-				data: [
-					{Time: '09:00', Carbohydrates: 136, test:1},
-					{Time: '12:00', Carbohydrates: 137, test:2},
-					{Time: '3:00', Carbohydrates: 275, test:2},
-					{Time: '6:00', Carbohydrates: 380, test:1},
-					{Time: '9:00', Carbohydrates: 655, test:3},
-					{Time: '12:00', Carbohydrates: 1571, test:1}
-				],
-				xkey: 'Time',
-				ykeys: ['Carbohydrates'],
-				labels: ['Carbohydrates', 'time'],
-				barColors: [color1],
-				barRatio: 0.4,
-				hideHover: 'auto'
+	  	var insulin_data = []
+	  	$.ajax({
+		url: "http://api.sugarnanny.tech/stats/insulin/1",
+		success: function(result){
+			
+			insulin_data = result.data
+			console.log("insulin:")
+			console.log(result.data)
+
+
+		var color1 = tinycolor("#C1EF65").lighten( 10 ).toString();
+
+	  		Morris.Bar({
+			  element: 'bar-chart-2',
+			  data: insulin_data,
+			  xkey: 'timestamp',
+			  ykeys: ['dose_units'],
+			  labels: ['Insulin Units','Time'],
+			  barColors: [color1],
+			  barRatio: 0.4,
+			  hideHover: 'auto'
 			});
+		}
+		});
 		}
 
 	  //Donut Chart
