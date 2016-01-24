@@ -18,6 +18,7 @@
                     "properties":
                     {
                         "timestamp":     { "type": "string" },
+                        "product_name":  { "type": "string" },
                         "servings":      { "type": "number" },
                         "calories":      { "type": "number" },
                         "fat":           { "type": "number" },
