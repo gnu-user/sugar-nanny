@@ -58,7 +58,7 @@
 
     $http(
       {method: 'GET',
-       url: 'http://api.sugarnanny.tech/stats/blood_sugar/1'}
+       url: 'http://api.sugarnanny.tech/history/blood_sugar/1'}
      )
           .success(function(data, status, headers, config) {
               $scope.sugarData = data.data;
@@ -70,7 +70,7 @@
             console.log('page not found:', data);
           });
 
-    $http({method: 'GET', url: 'http://jsonplaceholder.typicode.com/users'})
+    $http({method: 'GET', url: 'http://api.sugarnanny.tech/stats/meals/1'})
           .success(function(data, status, headers, config) {
               $scope.mealsHistory = data
           }).
@@ -80,9 +80,9 @@
             console.log('page not found:', data);
           });
 
-    $http({method: 'GET', url: 'http://jsonplaceholder.typicode.com/users'})
+    $http({method: 'GET', url: 'http://api.sugarnanny.tech/stats/meals/1'})
           .success(function(data, status, headers, config) {
-              $scope.mealsHistory = data
+              $scope.insulinIntake = data
           }).
             error(function(data, status, headers, config) {
             // called asynchronously if an error occurs
