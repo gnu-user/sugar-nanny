@@ -19,7 +19,7 @@ LANGUAGE SQL
 AS
 $$
 	--How much insulin to use to counter-act X grams of carbs:
-	SELECT 1500.0 / _insulin_tdd;
+	SELECT round(1500.0 / _insulin_tdd, 3);
 $$;
 CREATE FUNCTION set_bolus_correction_factor(_insulin_tdd INTEGER)
 RETURNS NUMERIC
@@ -27,7 +27,7 @@ LANGUAGE SQL
 AS
 $$
 	--How much insulin to use to counter-act X grams of carbs:
-	SELECT 1800.0 / _insulin_tdd;
+	SELECT round(1800.0 / _insulin_tdd, 3);
 $$;
 CREATE FUNCTION set_grams_of_carb_per_unit(_insulin_tdd INTEGER)
 RETURNS NUMERIC
@@ -35,7 +35,7 @@ LANGUAGE SQL
 AS
 $$
 	--How much insulin to use to counter-act X grams of carbs:
-	SELECT 450.0 / _insulin_tdd;
+	SELECT round(450.0 / _insulin_tdd, 3);
 $$;
 
 CREATE FUNCTION food_insulin_units_required(_account_id INTEGER, _food_id INTEGER, _servings NUMERIC)
