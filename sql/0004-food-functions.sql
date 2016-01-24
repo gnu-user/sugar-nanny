@@ -27,8 +27,7 @@ RETURNS JSONB
 LANGUAGE SQL
 AS
 $$
-    SELECT json_agg(json_build_object('food_id', food_auto.food_id,
-                                      'product_name', food_auto.product_name))::JSONB
+    SELECT json_agg(get_food_item(food_auto.food_id))::JSONB
     FROM
     (SELECT * FROM foods
      WHERE product_name LIKE '%' || lower(_query) || '%'
