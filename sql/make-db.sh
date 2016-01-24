@@ -13,7 +13,7 @@ then
     PGPASSWORD=${PASS} psql -U${USER} -h ${HOST} sugarnanny < 0004-food_functions.sql
     PGPASSWORD=${PASS} psql -U${USER} -h ${HOST} sugarnanny < 0005-stats-functions.sql
     PGPASSWORD=${PASS} psql -U${USER} -h ${HOST} sugarnanny < 9999-data.sql
-    python2 make-readings.py ${USER} ${PASS} ${HOST}
+    python2 generate-data.py ${USER} ${PASS} ${HOST}
 else
     dropdb -U${USER} --password ${PASS} -h ${HOST} sugarnanny
     createdb sugarnanny
@@ -24,5 +24,5 @@ else
     psql sugarnanny < 0004-food_functions.sql
     psql sugarnanny < 0005-stats-functions.sql
     psql sugarnanny < 9999-data.sql
-    python2 make-readings.py
+    python2 generate-data.py
 fi
