@@ -85,6 +85,14 @@
         console.log('page not found:', data);
       });
 
+      // Calories
+      // Fat
+      // Cholesterol
+      // Sodium
+      // Carbohydrates
+      // Fibre
+      // Sugar
+      // Protein
     $scope.doSearch = function() {
       if($scope.search.length > 3){
 
