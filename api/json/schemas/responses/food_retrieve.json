@@ -1,0 +1,36 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+
+    "type": "object",
+
+    "properties":
+    {
+        "success": { "type": "boolean" },
+        "code":    { "type": "integer" },
+        "status":  { "type": "string" },
+        "data":
+        {
+            "type": "object",
+            "properties":
+            {
+                "product_name": { "type": "string" },
+                "carb":     { "type": "number" },
+                "sugar":    { "type": "number" },
+                "fructose": { "type": "number" },
+                "sucrose":  { "type": "number" },
+                "glucose":  { "type": "number" },
+                "fiber":    { "type": "number" },
+                "sodium":   { "type": "number" },
+                "fat":      { "type": "number" },
+                "protein":  { "type": "number" },
+                "starch":   { "type": "number" },
+
+                "img_url":  { "type": "string" },
+                "img_small_url":  { "type": "string" },
+
+                "calories":   { "type": "number" }
+            },
+            "required": ["product_name", "carb", "sugar", "fructose", "sucrose", "glucose", "fiber", "sodium", "fat", "protein", "calories", "starch", "img_url", "img_small_url"]
+        }
+    }
+}
