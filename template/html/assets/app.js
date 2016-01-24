@@ -19,7 +19,7 @@
         templateUrl: "views/history.html",
         controller: "DashCtrl"
       }).when('/foodInformation', {
-        templateUrl: "views/foodinfo.html",
+        templateUrl: "views/foodInfo.html",
         controller: "DashCtrl"
       })
 
