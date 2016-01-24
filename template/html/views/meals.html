@@ -9,24 +9,9 @@
                 <div class="col-sm-6"><div id="table2_length" class="dataTables_length"></div></div><div class="col-sm-12"><div class="dataTables_filter" id="table2_filter"><label>
                 <input class="form-control input-sm" style="padding:0;" type="search" ng-model="search"></label></div></div>
                   <thead>
-                    <tr>
-                      <th>Food</th>
-                      <th></th>
-
-                    </tr>
                   </thead>
                   <tbody>
-<!--                     <tr class="odd gradeX">
-                      <td>Test</td>
-                      <td></td>
-                    </tr>
-                    <tr class="even gradeC">
-                      <td>Trident</td>
-                      <td></td>
-
-                    </tr> -->
-
-	                    <tr ng-repeat="rows in searchResults">
+	                    <tr ng-repeat="rows in searchResults" ng-click="foodSelected(rows)">
 	                    <td>{{ rows.id }}</td>
 	                    <td>{{ rows.name }}</td>
 	                    </tr>
